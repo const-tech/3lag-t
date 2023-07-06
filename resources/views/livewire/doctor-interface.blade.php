@@ -98,22 +98,22 @@
             <div class="taps-holder mb-3">
                 <ul class="nav nav-pills main-nav-tap mb-3 flex-wrap gap-4">
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-center">
+                        <a href="#" class="nav-link text-center bg-gray">
                             جلسه 1
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-center">
+                        <a href="#" class="nav-link text-center bg-gray">
                             جلسه 2
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-center">
+                        <a href="#" class="nav-link text-center bg-green">
                             جلسه 3
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link text-center">
+                        <a href="#" class="nav-link text-center bg-green">
                             جلسه 4
                         </a>
                     </li>

@@ -95,6 +95,16 @@
   height: 45px;
 }
 
+.bg-gray {
+  background-color: #9fa19f !important;
+  color: #fff !important;
+}
+
+.bg-green {
+  background-color: #33ce38 !important;
+  color: #fff !important;
+}
+
 body {
   font-family: "Noto Kufi Arabic", sans-serif;
   background-color: #f7f6fe;
