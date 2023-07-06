@@ -12,6 +12,8 @@ use App\Http\Controllers\Front\ProfileController;
 use App\Http\Controllers\Front\ReportsController;
 use App\Http\Controllers\Front\PatientsController;
 use App\Http\Controllers\Front\AppointmentController;
+use App\Models\Patient;
+use App\Models\PatientPackage;
 
 // livewire group
 Route::group(
@@ -39,6 +41,9 @@ Route::group(
                 return view('front.guide', compact('manuals'));
             })->name('guide');
             Route::get('/patients/patientFile/{patient}', [PatientsController::class, 'patientFile'])->name('patientFile');
+            Route::get('patients/{patient}/package_days/{patient_package}', function (Patient $patient, PatientPackage $patient_package) {
+                return view('front.patients.package_days', compact('patient', 'patient_package'));
+            })->name('patients.package_days');
             Route::resource('patients', PatientsController::class);
             Route::post('appointments/{appointment}/presence', [AppointmentController::class, 'presence'])->name('appointments.presence');
             Route::post('appointments/{appointment}/notPresence', [AppointmentController::class, 'notPresence'])->name('appointments.notPresence');
@@ -57,6 +62,10 @@ Route::group(
             Route::resource('invoices', InvoiceController::class);
             Route::get('invoices/bonds/{invoice}', [InvoiceController::class, 'bonds'])->name('invoices.bonds');
 
+            Route::view('pay_package', 'front.invoice.pay_package')->name('pay_package');
+
+            Route::view('packages', 'front.packages.index')->name('packages');
+
             Route::get('/treasury', [ReportsController::class, 'treasury']);
             Route::view('accounting', 'front.accounting')->name('accounting');
             Route::view('treasuryAccount', 'front.reports.treasury-account')->name('treasury_account');
@@ -68,6 +77,7 @@ Route::group(
             Route::view('products-report', 'front.reports.products')->name('products_report');
             Route::view('expenses-report', 'front.reports.expenses')->name('expenses_report');
             Route::view('purchases-report', 'front.reports.purchases')->name('purchases_report');
+            Route::view('packages_report', 'front.reports.packages-report')->name('packages_report');
             Route::view('not-saudis-report', 'front.reports.not-sudies')->name('not_sudies');
             Route::view('insurances-report', 'front.reports.insurances-report')->name('insurances_report');
             Route::view('patient-groups-report', 'front.reports.patient-groups-report')->name('patient_groups_report');

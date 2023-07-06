@@ -11,64 +11,69 @@
                     </a>
                     <ul class="listis-item " id="dropdown-lang">
                         @can('الأقسام')
-                        <li class="item-drop">
-                            <a href="{{ route('front.departments.index') }}">
-                                <p class="text">{{ __('admin.departments') }}</p>
-                            </a>
-                        </li>
-                        <li class="item-drop">
-                            <a href="{{ route('front.patient_groups.index') }}">
-                                <p class="text">مجموعات المرضى</p>
-                            </a>
-                        </li>
+                            <li class="item-drop">
+                                <a href="{{ route('front.departments.index') }}">
+                                    <p class="text">{{ __('admin.departments') }}</p>
+                                </a>
+                            </li>
+                            <li class="item-drop">
+                                <a href="{{ route('front.patient_groups.index') }}">
+                                    <p class="text">مجموعات المرضى</p>
+                                </a>
+                            </li>
                         @endcan
                         @can('الخدمات')
-                        <li class="item-drop">
-                            <a href="{{ route('front.products.index') }}">
-                                <p class="text">{{ __('admin.Therapeutic services') }}</p>
-                            </a>
-                        </li>
+                            <li class="item-drop">
+                                <a href="{{ route('front.products.index') }}">
+                                    <p class="text">{{ __('admin.Therapeutic services') }}</p>
+                                </a>
+                            </li>
+                            <li class="item-drop">
+                                <a href="{{ route('front.packages') }}">
+                                    <p class="text">الخطط العلاجية</p>
+                                </a>
+                            </li>
                         @endcan
                         @can('العروض')
-                        <li class="item-drop">
-                            <a href="{{ route('front.offers.index') }}">
-                                <p class="text">{{ __('admin.Offers') }}</p>
-                            </a>
-                        </li>
+                            <li class="item-drop">
+                                <a href="{{ route('front.offers.index') }}">
+                                    <p class="text">{{ __('admin.Offers') }}</p>
+                                </a>
+                            </li>
                         @endcan
                         @can('النماذج')
-                        <li class="item-drop">
-                            <a href="{{ route('front.forms.index') }}">
-                                <p class="text">{{ __('admin.Forms') }}</p>
-                            </a>
-                        </li>
+                            <li class="item-drop">
+                                <a href="{{ route('front.forms.index') }}">
+                                    <p class="text">{{ __('admin.Forms') }}</p>
+                                </a>
+                            </li>
                         @endcan
                     </ul>
                 </div>
             </li>
             @can('المشتريات')
-            <li>
-                <a href="{{ route('front.purchases.index') }}" class="d-flex">{{ __('admin.Purchases') }}
-                </a>
-            </li>
+                <li>
+                    <a href="{{ route('front.purchases.index') }}" class="d-flex">{{ __('admin.Purchases') }}
+                    </a>
+                </li>
             @endcan
 
 
             @can('المحولون')
-            <li>
-                <a href="{{ route('front.appointment.transferred') }}" class="d-flex">
-                    {{ __('Transferred patients') }}
-                    <div class="badge-count me-1 mb-1">
-                        {{ App\Models\Appointment::where('appointment_status', 'transferred')->count() }}</div>
-                </a>
-            </li>
+                <li>
+                    <a href="{{ route('front.appointment.transferred') }}" class="d-flex">
+                        {{ __('Transferred patients') }}
+                        <div class="badge-count me-1 mb-1">
+                            {{ App\Models\Appointment::where('appointment_status', 'transferred')->count() }}</div>
+                    </a>
+                </li>
             @endcan
             @can('التقارير')
-            <li>
-                <a href="{{ route('front.accounting') }}" class="d-flex">
-                    {{ __('accounting') }}
-                </a>
-            </li>
+                <li>
+                    <a href="{{ route('front.accounting') }}" class="d-flex">
+                        {{ __('accounting') }}
+                    </a>
+                </li>
             @endcan
             <li>
                 <a href="{{ route('front.guide') }}" class="d-flex">
@@ -83,27 +88,27 @@
         </ul>
         <ul class="d-flex gap-3 align-items-center">
             @can('الاشعارات')
-            <li>
-                <a href="{{ route('front.notifications') }}" class="d-flex">
-                    <div class=" position-relative d-flex">
-                        <i class="i-item fa-solid fa-bell fs-5"></i>
-                        <div class="badge-count position-absolute top-0 start-0 translate-middle">
-                            {{ App\Models\Notification::where('seen', false)->count() }}</div>
-                    </div>
-                </a>
-            </li>
-            <li>
-                @if (app()->getLocale() == 'ar')
-                <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="d-flex">
-                    <i class="fa-solid fa-language fs-5"></i>
-                </a>
-                @else
-                <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}" class="d-flex">
-                    <i class="fa-solid fa-language fs-5"></i>
-                </a>
-                @endif
+                <li>
+                    <a href="{{ route('front.notifications') }}" class="d-flex">
+                        <div class=" position-relative d-flex">
+                            <i class="i-item fa-solid fa-bell fs-5"></i>
+                            <div class="badge-count position-absolute top-0 start-0 translate-middle">
+                                {{ App\Models\Notification::where('seen', false)->count() }}</div>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    @if (app()->getLocale() == 'ar')
+                        <a href="{{ LaravelLocalization::getLocalizedURL('en') }}" class="d-flex">
+                            <i class="fa-solid fa-language fs-5"></i>
+                        </a>
+                    @else
+                        <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}" class="d-flex">
+                            <i class="fa-solid fa-language fs-5"></i>
+                        </a>
+                    @endif
 
-            </li>
+                </li>
             @endcan
             <li>
                 <div class="dropdown-hover" data-show="dropdown-lang">
