@@ -40,7 +40,7 @@
 
                             <div class="con d-flex gap-2">
                                 <div class="inp_holder mb-3" >
-                                    <input type="checkbox"  wire:model="transferstatus" {{ $transferstatus == true ? 'checked':'' }}  />
+                                    <input type="checkbox"  wire:model="transferstatus" />
                                     <label for="" class="small-label mb-1">{{ __('admin.Transferable patients') }}</label>
                                     {{-- {{ var_export($transferstatus) }} --}}
                                 </div>
