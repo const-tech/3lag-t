@@ -36,7 +36,6 @@
                         @foreach ($bonds as $bond)
                         <tr>
                             <td>{{ $bond->invoice->id }}</td>
-
                             <td>{{ $bond->user->name }}</td>
                             <td>{{ $bond->invoice->patient->name }}</td>
                             <td>{{ $bond->invoice->dr ? $bond->invoice->dr->name : 'لا يوجد' }}</td>
