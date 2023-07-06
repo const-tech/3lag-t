@@ -5,10 +5,10 @@
 @endpush
 <section class="main-section users">
     <!-- @if ($errors->any())
-    @foreach ($errors->all() as $error)
+@foreach ($errors->all() as $error)
 <div class="alert alert-warning">{{ $error }}</div>
 @endforeach
-    @endif -->
+@endif -->
     <x-alert></x-alert>
     <div class="container">
         <h4 class="main-heading">{{ __('admin.View patient') }}</h4>
@@ -19,6 +19,13 @@
                         <button wire:click='$set("screen","data")' type="button"
                             class="list-group-item list-group-item-action {{ $screen == 'data' ? 'active' : '' }}">
                             {{ __('admin.Patient data') }}
+                        </button>
+                        <button type="button"
+                            class="list-group-item list-group-item-action {{ $screen == 'sessions' ? 'active' : '' }}"
+                            wire:click='$set("screen","sessions")'>
+                            الجلسات العلاجية<div class="badge-count">
+                                {{ $patient->packages->count() }}
+                            </div>
                         </button>
                         <button wire:click='$set("screen","invoices")' type="button"
                             class="list-group-item list-group-item-action {{ $screen == 'invoices' ? 'active' : '' }}">
@@ -74,9 +81,9 @@
                     @include('front.patients.show-screens.' . $screen)
                     <div class="row">
                         <div class="col-4">
-                        {{ __('Number') }}:
-                        <span class="text-main-color">{{ $patient->id }}</span>
-                    </div>
+                            {{ __('Number') }}:
+                            <span class="text-main-color">{{ $patient->id }}</span>
+                        </div>
                         <div class="col-4">
                             {{ __('admin.employee') }}:
                             <span class="text-main-color">{{ $patient->user->name }}</span>
@@ -89,7 +96,7 @@
                     <div class="btn_holder d-flex align-items-center justify-content-center my-3">
                         <a href="{{ route('front.patientFile', $patient->id) }}" class="btn btn-sm btn-purple">
                             <i class="fa fa-eye"></i>
-                            {{ __('View the patient is medical file')}}
+                            {{ __('View the patient is medical file') }}
                         </a>
                     </div>
                 </div>
