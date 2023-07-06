@@ -10,8 +10,8 @@ class Departments extends Component
 {
     use WithPagination;
     public $name,$parent,$department,$is_lab,$is_scan;
-    public $transferstatus=false;
-    public $appointmentstatus=false;
+    public $transferstatus=true;
+    public $appointmentstatus=true;
     protected $paginationTheme = 'bootstrap';
     protected function rules()
     {
