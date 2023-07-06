@@ -21,12 +21,12 @@
                     <thead>
                         <tr>
                             <th>{{ __('admin.Invoice no.') }}</th>
-                            <th>{{ __('admin.rest') }}</th>
                             <th>{{ __('employee') }}</th>
                             <th>{{ __('admin.patient') }}</th>
                             <th>{{ __('admin.dr') }}</th>
                             <th>{{ __('admin.Date') }}</th>
                             <th>{{ __('admin.amount') }}</th>
+                            <th>{{ __('admin.rest') }}</th>
                             <th>طريقة الدفع</th>
                             <th>الحالة</th>
                             <th class="not-print">{{ __('admin.actions') }}</th>
