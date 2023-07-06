@@ -1,0 +1,32 @@
+// Use Var
+@import "./sass/helpers/var";
+// Use Mixins
+@import "./sass/helpers/mixins";
+// Use formats
+@import "./sass/components/helpers-classes";
+// Use Global Page
+@import "./sass/pages/globalPage";
+// Use Header
+@import "./sass/layout/header";
+// Use Page
+@import "./sass/pages/main";
+// Use add-patient Page
+@import "./sass/pages/add-patient";
+// Use new appoints Page
+@import "./sass/pages/newAppoints";
+// Use new Transferred patients Page
+@import "./sass/pages/Transferred-patients";
+// Use new login Page
+@import "./sass/pages/login";
+// Use new 404 Page
+@import "./sass/pages/404";
+// Use Buttons and dropdown
+@import "./sass/components/dropdowns-and-buttons";
+// Use headings
+@import "./sass/components/headings";
+// Use boxes
+@import "./sass/components/boxes";
+// Use forms
+@import "./sass/components/forms";
+// Use Footer
+@import "./sass/layout/footer";

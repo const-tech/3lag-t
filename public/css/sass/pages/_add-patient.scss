@@ -1,0 +1,48 @@
+.addPatient-section {
+  .addPatient-content {
+    .section-title {
+      background-color: $title-color;
+    }
+    .Patient-form-data {
+      .medical-information {
+        .more-info {
+          padding: 10px;
+          background-color: $title-color;
+          font-size: 16px !important;
+          &::after {
+            transition: $main-transition;
+            content: "\002B";
+            position: absolute;
+            font-weight: 600;
+            float: left;
+            left: 15px;
+          }
+          &.active {
+            &::after {
+              transition: $transition;
+              content: "\2212" !important;
+            }
+          }
+          &:hover {
+            background-color: #e9e8ea;
+          }
+          transition: $transition;
+        }
+        .data-content {
+          transition: $main-transition;
+          padding: 15px 15px 0;
+          max-height: 0px;
+          overflow: hidden;
+          div {
+            padding: 10px 0;
+            .radioarea {
+              background-color: #ebebebf5;
+              padding: 6px !important;
+              margin-bottom: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

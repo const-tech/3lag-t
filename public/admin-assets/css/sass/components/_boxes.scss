@@ -1,0 +1,100 @@
+// tables
+.table-dark th {
+    background-color: $main-dark !important;
+}
+.table,
+.table thead {
+    box-shadow: 0 0 5px 0 #ddd;
+    border-radius: 5px;
+}
+
+.box-data {
+    background-color: $grey-color-light;
+    border-radius: 20px;
+    padding: 20px;
+    .bar-name {
+        @include flex-justify(space-between);
+        margin-bottom: 2px;
+        .name {
+            flex: 1;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+        .box-icon {
+            @include flex-justify(center);
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background-color: $grey-color-light;
+            img {
+                width: 23px;
+            }
+            i,
+            svg {
+                font-size: 23px;
+                color: #fff;
+            }
+        }
+    }
+    .amount {
+        font-weight: 700;
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    .more {
+        color: #2E5789;
+        font-weight: 500;
+        font-size: 15px;
+        img {
+            margin-right: 6px;
+        }
+    }
+    &.box-main-color {
+        .box-icon {
+            background-color: $main-color;
+            img {
+                width: 27px;
+            }
+        }
+    }
+    &.box-blue {
+        background-color: $blue-color-light;
+        .box-icon {
+            background-color: $blue-color;
+            img {
+                width: 30px;
+            }
+        }
+    }
+    &.box-orange {
+        background-color: $orange-color-light;
+        .box-icon {
+            background-color: $orange-color;
+        }
+    }
+    &.box-green {
+        background-color: $green-color-light;
+        .box-icon {
+            background-color: $green-color;
+        }
+    }
+    &.box-purple {
+        background-color: $purple-color-light;
+        .box-icon {
+            background-color: $purple-color;
+            img {
+                width: 27px;
+            }
+        }
+    }
+    &.box-red {
+        background-color: $red-color-light;
+        .box-icon {
+            background-color: $red-color;
+            img {
+                width: 27px;
+            }
+        }
+    }
+}

@@ -1,0 +1,254 @@
+//buttons
+.btn-main-sm {
+    padding: 0.3rem 0.7rem;
+    transition: $transition;
+    color: #fff;
+    background: $main-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+    font-size: 13px;
+    outline: none;
+    border: 1px solid $main-color;
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+    &::before {
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 0;
+        width: 100%;
+        transition: $transition;
+        height: 100%;
+        background-color: white;
+        z-index: -1;
+    }
+    &:hover {
+        color: $main-color;
+        border: 1px solid $main-color;
+        &::before {
+            left: 0;
+        }
+    }
+}
+
+// another button effect
+.sec-btn-gre {
+    position: relative;
+    width: fit-content;
+    padding: 4.7px;
+    font-weight: 400;
+    font-size: 15px;
+    text-align: center;
+    background-color: #fff;
+    border: 2px solid $main-color;
+    border-radius: 4px;
+    z-index: 1;
+    overflow: hidden;
+    background-color: $white-color;
+    color: $white-color;
+    transition: $main-transition;
+    &:hover {
+        color: $main-color;
+    }
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0%;
+        width: 100%;
+        height: 180%;
+        z-index: -1;
+        background-color: $main-color;
+        transition: $main-transition;
+        top: 0;
+        border-radius: 0 0 50% 50%;
+    }
+    &:hover::before {
+        height: 0%;
+    }
+}
+.btn-purple {
+    &:focus {
+        box-shadow: none !important;
+    }
+    color: white;
+    background-color: $purple;
+    &:hover {
+        background-color: #7d3d99;
+        color: white;
+    }
+}
+//dropdown
+.dropdown-hover {
+    position: relative;
+    color: white;
+    font-size: 11px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border-radius: 4px;
+    z-index: 1001;
+    cursor: pointer;
+    &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 7px;
+        left: 0;
+        top: 100%;
+    }
+    &:hover {
+        .listis-item {
+            display: block;
+        }
+    }
+    .icon-drop {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: $grey-color;
+        .icon {
+            font-size: 16px;
+        }
+    }
+    .text {
+        margin: 0;
+        font-size: 13px;
+        text-align: center;
+    }
+    .listis-item {
+        position: absolute;
+        right: 0px;
+        z-index: 10000;
+        top: 100%;
+        width: fit-content;
+        padding: 0;
+        min-width: 100%;
+        background-color: $bg-dark;
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+        & {
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        display: none;
+        &.nospace {
+            top: calc(100% + 7px)
+        }
+        .item-drop a,.item-drop button {
+            display: flex;
+            background-color: $bg-dark;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            padding: 10px;
+            width: 100%;
+            white-space: nowrap;
+            z-index: 11111;
+            &:hover {
+                background: $bg-dark-light;
+            }
+            .icon-drop {
+                width: 19px;
+            }
+            .text {
+                size: 19px;
+                color: white;
+            }
+        }
+
+    }
+}
+
+// Badges
+.badge-count {
+    background-color: orangered;
+    font-size: 12px;
+    height: 17px;
+    width: 17px;
+    border-radius: 5px;
+    color: white;
+    @include centering;
+}
+.badge-text {
+    color: white;
+    background-color: #ff384a;
+    border-radius: 0.5rem;
+
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 0.5rem;
+    padding-top: 0.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    border: 1px solid transparent;
+    text-decoration: none;
+    vertical-align: middle;
+    text-align: center;
+    width: fit-content;
+}
+// close btn color
+.closeBtn-Color {
+    background-color: #f14343 !important;
+    width: 70px;
+    color: $main-color;
+    transition: $main-transition;
+    &:hover {
+        color: $main-color;
+        background-color: #df3333 !important;
+
+    }
+}
+
+// transfer between the pages
+.trans-btn{
+    background-color: #528de3;
+    border: 1px solid #528de3;
+    color: $white-color;
+    &:hover {
+        background-color: #377fe8;
+        border: 1px solid #377fe8;
+        color: $white-color;
+    }
+}
+
+
+.accordion-button {
+    font-size: 13px !important;
+  }
+.accordion-body {
+    font-size: 12px;
+    p {
+        font-size: 12px;
+    }
+}
+  .accordion-button::after {
+    margin-right: auto;
+    margin-left: 0px !important;
+  }
+
+  .accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgb(43 166 112 / 25%) !important;
+  }
+
+  .accordion-button:not(.collapsed) {
+    color: #809c8f;
+    background-color: rgb(43 166 112 / 25%);
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+  }
+
+  .accordion-button:not(.collapsed)::after {
+    background-image: url(https://www.svgrepo.com/show/83098/down-arrow.svg) !important;
+  }

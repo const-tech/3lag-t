@@ -1,0 +1,132 @@
+.homePage-content {
+    .box-container {
+        transition: $sec_transition;
+        &.box-1 {
+            background-color: #1c7d7e;
+            &:hover {
+                @include Cr-boxShadow(#1c7d7e)
+            }
+        }
+        &.box-2 {
+            background-color: #795548;
+            &:hover {
+                @include Cr-boxShadow(#795548)
+            }
+        }
+        &.box-3 {
+            background-color: #9e9e9e;
+            &:hover {
+                @include Cr-boxShadow(#9e9e9e)
+            }
+        }
+        &.box-4 {
+            background-color: #009688;
+            &:hover {
+                @include Cr-boxShadow(#009688)
+            }
+        }
+        &.box-5 {
+            background-color: #f44336;
+            &:hover {
+                @include Cr-boxShadow(#f44336)
+            }
+        }
+        &.box-6 {
+            background-color: #8bc34a;
+            &:hover {
+                @include Cr-boxShadow(#8bc34a)
+            }
+        }
+        &.box-7 {
+            background-color: #0093d0;
+            &:hover {
+                @include Cr-boxShadow(#0093d0)
+            }
+        }
+        &.box-8 {
+            background-color: #cddc39;
+            &:hover {
+                @include Cr-boxShadow(#cddc39)
+            }
+        }
+        &.box-9 {
+            background-color: #f4ab36;
+            &:hover {
+                @include Cr-boxShadow(#f4ab36)
+            }
+        }
+        &.box-10 {
+            background-color: #b04646;
+            &:hover {
+                @include Cr-boxShadow(#b04646)
+            }
+        }
+        &.box-11 {
+            background-color: #c060e4;
+            &:hover {
+                @include Cr-boxShadow(#c060e4)
+            }
+        }
+        &.box-12 {
+            background-color: #60b7e4;
+            &:hover {
+                @include Cr-boxShadow(#60b7e4)
+            }
+        }
+        &.box-13 {
+            background-color: #369f67;
+            &:hover {
+                @include Cr-boxShadow(#369f67)
+            }
+        }
+        &.box-14 {
+            background-color: #36419f;
+            &:hover {
+                @include Cr-boxShadow(#36419f)
+            }
+        }
+        &.box-15 {
+            background-color: #9f369f;
+            &:hover {
+                @include Cr-boxShadow(#9f369f)
+            }
+        }
+        &.box-16 {
+            background-color: #9f6d36;
+            &:hover {
+                @include Cr-boxShadow(#9f6d36)
+            }
+        }
+        &.box-17 {
+            background-color: #055818;
+            &:hover {
+                @include Cr-boxShadow(#055818)
+            }
+        }
+        &.box-18 {
+            background-color: #9f6d36;
+            &:hover {
+                @include Cr-boxShadow(#9f6d36)
+            }
+        }
+        &.box-19 {
+            background-color: #3d3d3d;
+            &:hover {
+                @include Cr-boxShadow(#3d3d3d)
+            }
+        }
+        &.box-20 {
+            background-color: #E91E63;
+            &:hover {
+                @include Cr-boxShadow(#E91E63)
+            }
+        }
+    }
+    .top-content {
+        .number,
+        .icon-holder {
+            font-size: 35px;
+            font-weight: 400;
+        }
+    }
+}

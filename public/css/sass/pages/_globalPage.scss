@@ -1,0 +1,676 @@
+body {
+    font-family: "Noto Kufi Arabic", sans-serif;
+    background-color: $section-color;
+    color: black;
+    font-size: 14px;
+    scroll-behavior: smooth;
+    direction: rtl;
+}
+
+/* start scroll bar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #f6f6f6;
+    box-shadow: 0 0 5px 0px #ddd inset;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #09b6d8;
+    border-radius: 20px;
+    &:hover {
+        background-color: #09adce;
+    }
+}
+/* end scroll bar */
+// input number
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+// All Rest
+* {
+    @include all-reset;
+}
+// a Reset
+a {
+    @include a-reset;
+}
+// reset btn
+button {
+    border: none;
+    outline: none;
+}
+// reset form-control
+.form-control {
+    font-size: 14px !important;
+    border: 1px solid $light-grey-color !important;
+}
+// main-section
+.main-section {
+    padding: 1.5rem 0;
+    min-height: calc(100vh - 41.88px - 54px - 69px);
+}
+
+.dr-main-section {
+    min-height: calc(100vh - 41.88px - 54px - 185px);
+}
+
+// Modal
+.modal-header {
+    .modal-title {
+        font-size: 15px !important;
+    }
+    .btn-close {
+        margin: unset !important;
+    }
+}
+
+// section height
+.getHeight {
+    min-height: calc(100vh - 38.88px - 54.5px - 63px);
+}
+// container height
+.getHeightContainer {
+    min-height: calc(100vh - 41.88px - 54px - 69px - 6rem);
+}
+
+// edit modal Bootstrap
+.modal.modal-img {
+    .modal-body {
+        position: relative;
+        .btn-close {
+            position: absolute;
+            left: 10px;
+            background-color: $grey-color;
+            top: 10px;
+        }
+    }
+}
+// edit btn Bootstrap
+.btn-info,
+.btn-warning {
+    color: white !important;
+}
+
+.casher-invoice {
+    width: 100%;
+    font-size: 14px;
+    min-height: 100vh;
+    background-color: #f7f6fe;
+    @media print {
+        background-color: #fff;
+        padding: 0 !important;
+        font-size: 11px;
+        .container {
+            width: 100% !important;
+            padding: 0 !important;
+            max-width: 100% !important;
+        }
+        td,
+        th {
+            padding: 2px !important;
+        }
+    }
+
+    .invoice-content {
+        .logo-holder {
+            .the_image {
+                width: 125px;
+                height: auto;
+                max-width: 100%;
+            }
+        }
+        .invoice-info {
+            b {
+                font-size: 16px;
+                color: #444;
+                font-weight: 600;
+            }
+        }
+        .parent-boxes-info {
+            width: 35%;
+            .box-info-border {
+                border: 1px dotted black;
+                padding: 2px;
+                display: flex;
+                font-size: 15px !important;
+                align-items: center;
+                gap: 1px;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+        }
+    }
+}
+
+// print
+@media print {
+    .not-print {
+        display: none !important;
+    }
+    .table-responsive {
+        width: 100% !important;
+    }
+    .ar {
+        font-size: 19px !important;
+    }
+    .patientFile {
+        .row > * {
+            width: 20%;
+        }
+        .check {
+            width: 50% !important;
+        }
+        .data-content {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+            div {
+                width: 50%;
+                p {
+                    font-size: 10px;
+                    white-space: nowrap;
+                }
+            }
+        }
+        .wrapper {
+            display: flex;
+            .parent {
+                display: flex;
+                flex-direction: column;
+                .data-content {
+                    div {
+                        width: 100%;
+                        textarea {
+                            min-height: 140px !important;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .data-content {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        width: 100% !important;
+        div {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 100% !important;
+            div {
+                width: 50%;
+                p {
+                    font-size: 8px !important;
+                    white-space: wrap !important;
+                }
+                &.holder {
+                    width: 100% !important;
+                    .special {
+                        width: 100% !important;
+                        textarea {
+                            width: 100% !important;
+                            min-height: 100px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .casher-invoice {
+        .invoice-content {
+            padding: 10px !important;
+        }
+        .invoice-name {
+            font-size: 10px !important;
+        }
+        .logo-holder {
+            width: 100% !important;
+            .the_image {
+                width: 90px !important;
+                height: 80px !important;
+            }
+        }
+        .the_address {
+            p {
+                font-size: 10px !important;
+            }
+        }
+        .tax {
+            font-size: 10px;
+        }
+        .the_date {
+            font-size: 10px;
+        }
+        div {
+            b {
+                font-size: 10px !important;
+            }
+        }
+        .main-table {
+            tr {
+                th {
+                    font-size: 8px;
+                    padding: 3px;
+                }
+                td {
+                    font-size: 8px;
+                    padding: 3px;
+                }
+            }
+        }
+        .invoice-content {
+            box-shadow: none !important;
+        }
+        .invoice-info {
+            align-items: center;
+            .name {
+                b {
+                    font-size: 10px !important;
+                    color: #000 !important;
+                }
+            }
+            .value {
+                font-size: 10px !important;
+                color: #000 !important;
+            }
+        }
+        .wel {
+            font-size: 12px !important;
+            margin-bottom: 5px !important;
+            text-align: center !important;
+            color: #000 !important;
+        }
+        .bar_code_holder {
+            margin: 0px auto;
+            svg {
+                width: 130px !important;
+                height: 100px !important;
+            }
+        }
+        .parent-boxes-info {
+            margin: 10px auto 0px;
+            width: 100% !important;
+        }
+    }
+}
+
+// pages Loader
+.loader-container {
+    @include centering;
+    z-index: 9999;
+    background-color: #fffffff7;
+    visibility: visible;
+    opacity: 1;
+    transition: $main-transition;
+    .the_loader {
+        @include circle(190px);
+    }
+    &.hidden-loader {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+/* Start  num-teeth */
+
+section.num-teeth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+section.num-teeth .content {
+    width: 700px;
+    position: relative;
+    margin: auto;
+}
+section.num-teeth .content > img {
+    max-width: 100%;
+}
+section.num-teeth .content input[type="checkbox"] {
+    width: 5px;
+    position: absolute;
+    height: 5px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+section.num-teeth .content input[type="checkbox"]::before {
+    content: "";
+    width: 27px;
+    position: absolute;
+    background-color: transparent;
+    left: 50%;
+    cursor: pointer;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 27px;
+}
+section.num-teeth .content input[type="checkbox"]::after {
+    content: "";
+    width: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 7px 0 $blue-color;
+    position: absolute;
+    background-color: $blue-color;
+    left: 50%;
+    border-radius: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 10px;
+}
+section.num-teeth .content input[type="checkbox"]:checked:after {
+    content: "\f00c";
+    font-weight: 900;
+    font-family: "Font Awesome 6 Free";
+    box-shadow: 0 0 0px 0 $blue-color;
+    filter: drop-shadow(2px 4px 6px $light-green-color);
+    cursor: pointer;
+    font-size: 35px;
+    color: $light-green-color;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+@media (max-width: 575.98px) {
+    section.num-teeth .container {
+        min-height: calc(50vh);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    section.num-teeth .content input[type="checkbox"]::before {
+        width: 10px;
+        height: 10px;
+    }
+    section.num-teeth .content input[type="checkbox"]::after {
+        width: 5px;
+        height: 5px;
+    }
+    section.num-teeth .content input[type="checkbox"]:checked:after {
+        font-size: 10px;
+    }
+}
+
+section.num-teeth .content input[type="checkbox"]:nth-of-type(1) {
+    left: 4.7%;
+    top: 39%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(2) {
+    left: 11.5%;
+    top: 40.5%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(3) {
+    left: 18.7%;
+    top: 41.7%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(4) {
+    left: 24.8%;
+    top: 43.5%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(5) {
+    left: 29.7%;
+    top: 44%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(6) {
+    left: 35.3%;
+    top: 44.5%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(7) {
+    left: 40.7%;
+    top: 45%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(8) {
+    left: 46.3%;
+    top: 45%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(9) {
+    left: 52.3%;
+    top: 44.5%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(10) {
+    left: 57.8%;
+    top: 44.5%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(11) {
+    left: 63.6%;
+    top: 44.5%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(12) {
+    left: 69%;
+    top: 44.5%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(13) {
+    left: 73.8%;
+    top: 44.3%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(14) {
+    left: 80.21%;
+    top: 43%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(15) {
+    left: 87.4%;
+    top: 41.5%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(16) {
+    left: 94.6%;
+    top: 39.5%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(17) {
+    left: 94.6%;
+    top: 51%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(18) {
+    left: 86.1%;
+    top: 52%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(19) {
+    left: 78.25%;
+    top: 54.5%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(20) {
+    left: 71.77%;
+    top: 56.1%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(21) {
+    left: 66.37%;
+    top: 56.7%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(22) {
+    left: 61%;
+    top: 57%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(23) {
+    left: 56.1%;
+    top: 57.3%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(24) {
+    left: 51.65%;
+    top: 57.7%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(25) {
+    left: 47%;
+    top: 57.5%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(26) {
+    left: 42.75%;
+    top: 57.3%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(27) {
+    left: 37.8%;
+    top: 57.3%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(28) {
+    left: 32.35%;
+    top: 56.7%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(29) {
+    left: 26.9%;
+    top: 56%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(30) {
+    left: 20.25%;
+    top: 54.6%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(31) {
+    left: 12.5%;
+    top: 51.6%;
+}
+section.num-teeth .content input[type="checkbox"]:nth-of-type(32) {
+    left: 4.3%;
+    top: 50.5%;
+}
+/* End  num-teeth */
+.w-alert {
+    &.alert-dismissible {
+        .btn-close {
+            right: auto;
+            left: 0;
+        }
+    }
+    @include maxWidth(sm) {
+        width: 100% !important;
+    }
+}
+.resize {
+    max-width: 240px;
+}
+
+.resize-svg-Bo {
+    width: 20px;
+    height: 20px;
+}
+
+.tooltip-inner {
+    max-width: 380px;
+    width: 350px;
+    letter-spacing: 2;
+    padding: 10px;
+    padding-bottom: 15px;
+    line-height: 1.8;
+}
+
+.resize_ale {
+    width: 250px !important;
+    padding: 7px !important;
+    font-size: 11px !important;
+}
+
+.resize_ale-2 {
+    width: fit-content !important;
+    padding: 10px !important;
+    font-size: 13px !important;
+}
+
+.space-noWrap {
+    white-space: nowrap;
+}
+
+// custom some different element in mobile screen
+@include maxWidth(sm) {
+    .sw-100 {
+        width: 100% !important;
+    }
+}
+// custom some different element in tablet screen
+@include maxWidth(lg) {
+    .lw-100 {
+        width: 100% !important;
+    }
+}
+
+.medical-information {
+    .more-info {
+        padding: 10px;
+        background-color: $title-color;
+        font-size: 16px !important;
+        &::after {
+            transition: $main-transition;
+            content: "\002B";
+            position: absolute;
+            font-weight: 600;
+            float: left;
+            left: 15px;
+        }
+        &.active {
+            &::after {
+                transition: $transition;
+                content: "\2212" !important;
+            }
+        }
+        &:hover {
+            background-color: #e9e8ea;
+        }
+        transition: $transition;
+    }
+    .data-content {
+        transition: $main-transition;
+        padding: 15px 15px 0;
+        max-height: 0px;
+        overflow: hidden;
+        div {
+            padding: 10px 0;
+            .radioarea {
+                background-color: #ebebebf5;
+                padding: 6px !important;
+                margin-bottom: 15px;
+            }
+        }
+    }
+}
+
+.lang-control {
+    font-size: 35px;
+}
+
+.lang {
+    font-size: 23px;
+}
+
+.right-b {
+    border-right: 1px solid #d5d3d3;
+    padding-right: 4px;
+}
+
+// Helpers Bg Color & Colors
+.alt-bg-color {
+    background-color: #09adce;
+}
+
+.alt-text-color {
+    color: #09adce !important;
+}
+
+.color-gr {
+    color: #2ba670;
+}
+
+// Helpers Cursor
+.cursor-auto {
+    cursor: auto;
+}
+
+// Helpers Width
+.w-100px {
+    width: 100px;
+}
+.w-130px {
+    width: 130px;
+}

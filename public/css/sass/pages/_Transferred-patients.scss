@@ -1,0 +1,158 @@
+.w-fit {
+    width: fit-content;
+}
+
+.special-table {
+    thead {
+        border: 1px solid #ddd !important;
+        tr {
+            border: 1px solid #ddd !important;
+            th {
+                border: 1px solid #ddd !important;
+                background-color: #f9fafb;
+                font-size: 13px;
+                white-space: nowrap;
+                padding: 4px;
+                height: 43px;
+                vertical-align: middle;
+                color: #6b7280;
+                font-weight: 600;
+            }
+        }
+    }
+    tbody {
+        border: 1px solid #ddd !important;
+        tr {
+            border: 1px solid #ddd !important;
+            td {
+                border: 1px solid #ddd !important;
+                vertical-align: middle;
+                background-color: white;
+                height: 41px;
+                font-size: 12px;
+                color: #444;
+                padding: 4px;
+                position: relative;
+                &:hover .toltip-table {
+                    visibility: visible;
+                    opacity: 1;
+                }
+                &:not(:first-of-type) {
+                    background-color: #eee;
+
+                }
+                .toltip-table {
+                    background-color: #2c2c2c;
+                    position: absolute;
+                    bottom: calc(100% + 10px);
+                    left: 50%;
+                    padding: 10px;
+                    width: fit-content;
+                    color: white;
+                    white-space: nowrap;
+                    font-size: 15px;
+                    transform: translateX(-50%);
+                    text-align: start;
+                    border-radius: 5px;
+                    visibility: hidden;
+                    opacity: 0;
+                    transition: 300ms;
+                    z-index: 1000;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        top: 100%;
+                        left: 50%;
+                        border-width: 10px;
+                        border-style: solid;
+                        border-color: #2c2c2c transparent transparent
+                            transparent;
+                        transform: translateX(-50%);
+                        z-index: 1500;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.section-content {
+    .status {
+        .box {
+            .color {
+                width: 18px;
+                height: 18px;
+                border-radius: 3px;
+            }
+            .one {
+                background-color: #eee;
+            }
+            .two {
+                background-color: #5cb85c;
+            }
+            .three {
+                background-color: #ffbb33;
+            }
+            .four {
+                background-color: #d9534f;
+            }
+            .five {
+                background-color: #428bca;
+            }
+            .six {
+                background-color: #009688;
+                // background-color: #111;
+            }
+            .text {
+                font-family: Arial, Helvetica, sans-serif;
+            }
+        }
+    }
+}
+
+.table-color tr:nth-of-type(1) .toltip-table,
+.table-color tr:nth-of-type(2) .toltip-table {
+    bottom: unset;
+    top: calc(100% + 10px);
+}
+
+.table-color tr td:nth-of-type(1) .toltip-table {
+    transform: translateX(0%);
+    left: unset;
+    right: 0;
+}
+
+.table-color tr:nth-of-type(1) .toltip-table::before,
+.table-color tr:nth-of-type(2) .toltip-table::before {
+    top: unset;
+    bottom: 100%;
+    border-color: transparent transparent #2c2c2c transparent;
+}
+
+.table-color tr td:nth-of-type(1) .toltip-table::before {
+    transform: translateX(0);
+    left: unset;
+    right: 10px;
+}
+
+.table-color {
+    .bg-didNot-attend{
+        background-color: #ff4444 !important;
+    }
+    .bg-bookedUp{
+        background-color: #00c851 !important;
+    }
+    .bg-available {
+        background-color: #bbb !important;
+    }
+    .bg-attended {
+        background-color: #428bca !important;
+    }
+    .bg-online {
+        background-color: #ffbb33 !important;
+        white-space: nowrap;
+    }
+    .bg-converters {
+        background-color: #009688 !important;
+    }
+}

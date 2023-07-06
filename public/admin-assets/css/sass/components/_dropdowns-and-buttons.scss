@@ -1,0 +1,131 @@
+//buttons
+.btn-main-sm {
+    padding: 0.3rem 0.7rem;
+    transition: $transition;
+    color: #fff;
+    background: #243848;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    white-space: nowrap;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+    font-size: 13px;
+    outline: none;
+    border: 1px solid #243848;
+    z-index: 1;
+    position: relative;
+    overflow: hidden;
+    &::before {
+        content: "";
+        position: absolute;
+        left: 100%;
+        top: 0;
+        width: 100%;
+        transition: $transition;
+        height: 100%;
+        background-color: white;
+        z-index: -1;
+    }
+    &:hover {
+        color: #243848;
+        border: 1px solid #243848;
+        &::before {
+            left: 0;
+        }
+    }
+}
+
+// dropdown
+.dropdown-user {
+    & > button {
+        background-color: transparent !important;
+        background-color: transparent !important;
+        color: black !important;
+        border: none !important;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        padding: 0 !important;
+        &:focus {
+            box-shadow: none !important;
+            border: none !important;
+            outline: none !important;
+        }
+        &::after {
+            margin: 0 !important;
+            border-top: 0.4em solid;
+            border-left: 0.4em solid transparent;
+            border-right: 0.4em solid transparent;
+        }
+        .photo {
+            width: 29px;
+            height: 29px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+    .dropdown-item,
+    .dropdown-item > button {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 14px;
+    }
+}
+
+// Badges
+.badge-count {
+    background-color: orangered;
+    font-size: 12px;
+    height: 17px;
+    width: 17px;
+    border-radius: 5px;
+    color: white;
+    @include centering;
+}
+
+
+// Btns
+.main-btn {
+    color: white !important;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    white-space: nowrap;
+    outline: none;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    border: none;
+    width: fit-content;
+    position: relative;
+    padding: 8px 13px;
+    background: $green-color;
+    &.btn-orange {
+      background-color: $orange-color;
+    }
+    &.btn-purple {
+      background-color: $purple-color;
+    }
+    &.btn-blue {
+      background-color: $blue-color;
+    }
+    &.btn-main-color {
+      background-color: $main-color;
+    }
+    .icon {
+      width: 20px;
+      height: auto;
+    }
+    svg {
+      font-size: 20px;
+    }
+    .main-badge {
+      position: absolute;
+      left: -10px;
+      top: -10px;
+    }
+  }
