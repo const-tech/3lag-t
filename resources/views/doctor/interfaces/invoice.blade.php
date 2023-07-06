@@ -13,45 +13,68 @@
                     </div>
                 @endif
 
-                @can('الخدمات')
-                    <p>{{ __('You can choose services or search by number') }}</p>
-                    <div class="inp-container w-100 mb-3">
-                        <label for="" class="small-label">{{ __('category') }}</label>
-                        <select wire:model="selected_department_id" class="main-select w-100">
-                            <option value="">{{ __('Choose department') }}</option>
-                            @foreach ($departments ?? [] as $department)
-                                <option value="{{ $department->id }}">{{ $department->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
 
-                    <div class="inp-container ms-0 ms-md-2 w-100">
-                        <label for="" class="small-label">{{ __('admin.Date') }}</label>
-                        <input type="date" id="" class="form-control w-100" wire:model="date" />
-                    </div>
-                    
-                    <div class="inp-container w-100 mb-3">
-                        <label for="" class="small-label">{{ __('service') }}</label>
-                        <select wire:model="product_id" class="main-select w-100" wire:change='add_product'>
-                            <option value="">{{ __('Choose the service') }}</option>
-                            @foreach (\App\Models\Product::query()->where('department_id', $selected_department_id)->get() as $product)
-                                <option value="{{ $product->id }}">{{ $product->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="d-flex align-items-end gap-2 mb-3">
-                        <div class="inp-container w-100">
-                            <label for="" class="small-label">{{ __('Service number search') }}</label>
-                            <input type="number" wire:model='product_id' class="form-control" wire:keyup='add_product'>
+                <div class="inp-container ms-0 ms-md-2 w-100 mb-4">
+                    <label for="" class="small-label">نوع الفاتورة</label>
+                    <select wire:model="type" id="" class="main-select w-100">
+                        <option value="">اختر</option>
+                        <option value="service">خدمة</option>
+                        <option value="package">باكدج</option>
+                    </select>
+                </div>
+                @if ($type)
+                    @if ($type == 'service')
+                        <p>{{ __('You can choose services or search by number') }}</p>
+                        <div class="inp-container w-100 mb-3">
+                            <label for="" class="small-label">{{ __('category') }}</label>
+                            <select wire:model="selected_department_id" class="main-select w-100">
+                                <option value="">{{ __('Choose department') }}</option>
+                                @foreach ($departments ?? [] as $department)
+                                    <option value="{{ $department->id }}">{{ $department->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="inp-container d-flex w-100 gap-2">
-                            <a target="_blank" href="{{ route('front.products.index') }}"
-                                class="btn btn-sm btn-primary">{{ __('products') }}</a>
-                            <a data-bs-toggle="modal" data-bs-target="#add_product"
-                                class="btn btn-sm btn-success">{{ __('admin.Add product') }}</a>
+
+                        <div class="inp-container ms-0 ms-md-2 w-100">
+                            <label for="" class="small-label">{{ __('admin.Date') }}</label>
+                            <input type="date" id="" class="form-control w-100" wire:model="date" />
                         </div>
-                    </div>
-                @endcan
+
+                        <div class="inp-container w-100 mb-3">
+                            <label for="" class="small-label">{{ __('service') }}</label>
+                            <select wire:model="product_id" class="main-select w-100" wire:change='add_product'>
+                                <option value="">{{ __('Choose the service') }}</option>
+                                @foreach (\App\Models\Product::query()->where('department_id', $selected_department_id)->get() as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="d-flex align-items-end gap-2 mb-3">
+                            <div class="inp-container w-100">
+                                <label for="" class="small-label">{{ __('Service number search') }}</label>
+                                <input type="number" wire:model='product_id' class="form-control"
+                                    wire:keyup='add_product'>
+                            </div>
+                            <div class="inp-container d-flex w-100 gap-2">
+                                <a target="_blank" href="{{ route('front.products.index') }}"
+                                    class="btn btn-sm btn-primary">{{ __('products') }}</a>
+                                <a data-bs-toggle="modal" data-bs-target="#add_product"
+                                    class="btn btn-sm btn-success">{{ __('admin.Add product') }}</a>
+                            </div>
+                        </div>
+                    @else
+                        <div class="inp-container ms-2 w-100">
+                            <label for="" class="small-label">الباكدج</label>
+                            <select wire:model="package_id" id="" class="main-select w-100">
+                                <option value="">اختر الباكدج</option>
+                                @foreach ($packages as $package)
+                                    <option value="{{ $package->id }}">{{ $package->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @endif
+                @endif
+
                 <div class="inp-container d-flex align-items-center mb-3 w-100">
                     <label for="split"
                         class="small-label ms-2 form-check-label">{{ __('admin.split bill') }}</label>
@@ -98,7 +121,8 @@
 
             <div class="output-box d-flex align-items-center justify-content-end mb-2">
                 <span class="a_word ms-2"> {{ __('admin.tax') }} : </span>
-                <input readonly type="text" placeholder="0" class="text-center form-control w-50" wire:model="tax" />
+                <input readonly type="text" placeholder="0" class="text-center form-control w-50"
+                    wire:model="tax" />
             </div>
             <div class="output-box d-flex align-items-center justify-content-end mb-2">
                 <span class="a_word ms-2 space-noWrap"> {{ __('admin.Total with tax') }} : </span>
@@ -124,39 +148,72 @@
 
         </div>
     </div>
-    <div class="table-responsive mt-4">
-        <table class="table main-table">
-            <thead>
-                <tr>
-                    <th>{{ __('admin.department') }}</th>
-                    <th>{{ __('admin.product') }}</th>
-                    <th>{{ __('admin.price') }}</th>
-                    <th>{{ __('admin.actions') }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($items as $key => $item)
+    @if ($type && $type == 'service')
+        <div class="table-responsive mt-4">
+            <table class="table main-table">
+                <thead>
                     <tr>
-                        <td>{{ __($item['department']) }}</td>
-                        <td>{{ $item['product_name'] }}</td>
-                        @can('خصم الفاتورة')
-                            <td><input type="number" wire:model="items.{{ $key }}.price" id=""
-                                    wire:keyup='changeItemTotal({{ $key }})'></td>
-                        @else
-                            <td>{{ $item['price'] }}</td>
-                        @endcan
+                        <th>{{ __('admin.department') }}</th>
+                        <th>{{ __('admin.product') }}</th>
+                        <th>{{ __('admin.price') }}</th>
+                        <th>{{ __('admin.actions') }}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($items as $key => $item)
+                        <tr>
+                            <td>{{ __($item['department']) }}</td>
+                            <td>{{ $item['product_name'] }}</td>
+                            @can('خصم الفاتورة')
+                                <td><input type="number" wire:model="items.{{ $key }}.price" id=""
+                                        wire:keyup='changeItemTotal({{ $key }})'></td>
+                            @else
+                                <td>{{ $item['price'] }}</td>
+                            @endcan
+                            <td>
+                                <div class="d-flex align-items-center justify-content-center gap-1">
+                                    <button class="btn btn-sm btn-danger"
+                                        wire:click="delete_item({{ $key }})">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    @endif
+
+    @if ($packagee && $package_id != '')
+        <div class="table-responsive ">
+            <table class="table main-table">
+                <thead>
+                    <tr>
+                        <th>{{ __('admin.name') }}</th>
+                        <th>{{ __('admin.price') }}</th>
+                        <th>{{ __('admin.actions') }}</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ $packagee->title }}</td>
+                        <td><input type="number" value="{{ $packagee->total }}" class="form-control"
+                                id="" disabled></td>
                         <td>
                             <div class="d-flex align-items-center justify-content-center gap-1">
-                                <button class="btn btn-sm btn-danger" wire:click="delete_item({{ $key }})">
+                                <button class="btn btn-sm btn-danger" wire:click="deletePackage()">
                                     <i class="fa-solid fa-trash-can"></i>
                                 </button>
                             </div>
                         </td>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+
+                </tbody>
+            </table>
+        </div>
+    @endif
     <div class="The-text-area w-100">
         <textarea wire:model.defer="notes" id="" class="form-control w-100 p-2"
             placeholder="{{ __('admin.notes') }}"></textarea>
