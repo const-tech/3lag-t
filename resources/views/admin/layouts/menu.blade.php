@@ -23,7 +23,6 @@
                 </div>
             </a>
         </li>
-        @can('الاعدادت')
         <li class="list-item {{ request()->routeIs('admin.settings') ? 'active' : '' }}">
             <a href="{{ route('admin.settings') }}">
                 <div>
@@ -32,7 +31,8 @@
                 </div>
             </a>
         </li>
-        @endcan
+        {{-- @can('الاعدادت')
+        @endcan --}}
         @can('الصلاحيات')
         <li class="list-item {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
             <a href="{{ route('admin.roles.index') }}">
