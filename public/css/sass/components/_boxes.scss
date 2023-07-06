@@ -392,3 +392,24 @@
         height: 55px;
     }
 }
+
+.box-plan {
+    padding: 20px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1.5px solid #dddddd;
+    // border: 1.5px solid #09adce;
+    .name {
+        margin-bottom: 10px;
+        font-size: 20px;
+        color: #dc362e;
+    }
+    .num {
+        font-size: 23px;
+        color: #dc362e;
+        margin-bottom: 0px;
+    }
+}
