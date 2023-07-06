@@ -95,7 +95,7 @@
             </div>
             <div class="col-sm-6 col-md-4">
                 <div class="alert alert-primary p-1 mb-1 fs-11">
-                    في حال كان الموظف طبيب اسنان يتم اختيار الحقل ليظهر صورة تشخيص الاسنان
+                    في حال كان الموظف طبيب العلاج الطبعي يتم اختيار الحقل ليظهر صورة تشخيص الالعلاج الطبعي
                 </div>
                 <label class="main-lable" for="">هل هو طبيب أسنان؟</label>
                 <input class="" type="checkbox" value="1" name="is_dentist">
