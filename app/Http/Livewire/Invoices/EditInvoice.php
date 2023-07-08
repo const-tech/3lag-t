@@ -38,6 +38,8 @@ class EditInvoice extends Component
             'offers_discount' => 'nullable',
             'date' => 'required|date',
             'type' => 'nullable',
+            'package_id' => 'nullable',
+            
         ];
     }
     public function get_patient()
@@ -343,7 +345,13 @@ class EditInvoice extends Component
     public function submit()
     {
         $data = $this->validate();
+        unset($data['patient']);
         $data['patient_id'] = $this->patient->id;
+        
+        if ($this->type != 'package') {
+            $data['package_id'] = null;
+        }
+
         if ($this->status == 'tmara') {
             $data['installment_company'] = 1;
             $data['status'] = 'Paid';
