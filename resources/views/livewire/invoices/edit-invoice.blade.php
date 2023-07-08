@@ -78,6 +78,16 @@
                                 <option value="">{{ __('admin.evening') }}</option>
                             </select>
                         </div> --}}
+
+
+                            <div class="inp-container ms-0 ms-md-2 w-100">
+                                <label for="" class="small-label">نوع الفاتورة</label>
+                                <select wire:model="type" id="" class="main-select w-100">
+                                    <option value="">اختر</option>
+                                    <option value="service">خدمة</option>
+                                    <option value="package">باكدج</option>
+                                </select>
+                            </div>
                         </div>
 
                         @if ($type == 'package')
@@ -215,7 +225,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 @if ($type != 'package')
                     <div class="table-responsive mt-4">
                         <table class="table main-table">
