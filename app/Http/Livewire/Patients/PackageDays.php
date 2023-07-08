@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Front\Patients;
+namespace App\Http\Livewire\Patients;
 
 use App\Models\Appointment;
 use App\Models\PackageDay;
@@ -153,6 +153,6 @@ class PackageDays extends Component
     {
         $package_days = PackageDay::where('patient_id', $this->patient->id)->where('patient_package_id', $this->patient_package->id)->get();
 
-        return view('livewire.front.patients.package-days', compact('package_days'));
+        return view('livewire.patients.package-days', compact('package_days'));
     }
 }

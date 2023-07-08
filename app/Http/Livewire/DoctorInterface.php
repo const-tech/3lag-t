@@ -66,7 +66,7 @@ class DoctorInterface extends Component
     public $price;
 
     public $appointment_date;
-    public $examine_patient = false, $type, $packagee, $package_id, $patient_package, $examine_session = false;
+    public $examine_patient = false, $type, $packagee, $package_id, $patient_package, $examine_session = false, $session_no, $session_diagnose;
 
     public $diagnosis = [
         'taken' => null,
@@ -133,9 +133,23 @@ class DoctorInterface extends Component
         }
     }
 
-    public function selectSession()
+    public function selectSession($id, $session)
     {
+        $patient_package = PatientPackage::find($id);
         $this->examine_session = true;
+        $this->session_no = $session;
+
+        $this->session_diagnose = Diagnose::where('patient_id', $this->patient->id)->where('patient_package_id', $patient_package->id)->where('session_no', $this->session_no)->first();
+
+        if ($this->session_diagnose) {
+            $this->diagnosis['chief_complain'] = $this->session_diagnose->chief_complain;
+            $this->diagnosis['sign_and_symptom'] = $this->session_diagnose->sign_and_symptom;
+            $this->diagnosis['other'] = $this->session_diagnose->other;
+            $this->diagnosis['taken'] = $this->session_diagnose->taken;
+            $this->diagnosis['treatment'] = $this->session_diagnose->treatment;
+        } else {
+            $this->reset('diagnosis');
+        }
     }
 
 
@@ -357,16 +371,37 @@ class DoctorInterface extends Component
             'diagnosis.period' => 'nullable',
         ]);
 
-        $diagnose = Diagnose::create(array_merge([
-            'appointment_id' => $this->appointment_id,
-            'patient_id' => $this->patient->id,
-            'dr_id' => doctor()->id,
-            'department_id' => doctor()->department_id,
-            'time' => date('H:i'),
-            'day' => date('Y-m-d'),
-        ], $this->diagnosis));
-        $diagnose->appoint->update(['attended_at' => Carbon::now()]);
-        $this->screen = 'invoice';
+        if ($this->session_no && $this->patient_package) {
+            if ($this->session_diagnose) {
+                $this->session_diagnose->update($this->diagnosis);
+            } else {
+                $diagnose = Diagnose::create(array_merge([
+                    'appointment_id' => $this->appointment_id,
+                    'patient_id' => $this->patient->id,
+                    'dr_id' => doctor()->id,
+                    'department_id' => doctor()->department_id,
+                    'time' => date('H:i'),
+                    'day' => date('Y-m-d'),
+                    'session_no' => $this->session_no,
+                    'patient_package_id' => $this->patient_package->id,
+                ], $this->diagnosis));
+                $diagnose->appoint->update(['attended_at' => Carbon::now()]);
+            }
+        } else {
+            $diagnose = Diagnose::create(array_merge([
+                'appointment_id' => $this->appointment_id,
+                'patient_id' => $this->patient->id,
+                'dr_id' => doctor()->id,
+                'department_id' => doctor()->department_id,
+                'time' => date('H:i'),
+                'day' => date('Y-m-d'),
+            ], $this->diagnosis));
+
+            $this->screen = 'invoice';
+            $diagnose->appoint->update(['attended_at' => Carbon::now()]);
+        }
+
+
         session()->flash('success', 'تم اضافة التشخيص بنجاح');
     }
 

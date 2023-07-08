@@ -65,7 +65,13 @@
                 <div class="d-flex mb-1 align-items-center gap-1">
                     <p class="mb-0">
                         {{ __('Patient name') }} :
-                        {{ $patient->name ?? null }}
+                        {{ $patient->name ?? null }} -
+                        @if ($patient_package)
+                            اسم الخطة : {{ $patient_package->package->title }}
+                        @endif
+                        @if ($session_no)
+                            جلسة {{ $session_no }}
+                        @endif
                     </p>
 
                     @if ($patient)
@@ -110,7 +116,15 @@
                     <ul class="nav nav-pills main-nav-tap mb-3 flex-wrap gap-4">
                         @for ($i = 1; $i <= $patient_package->dayes_period; $i++)
                             <li class="nav-item">
-                                <button wire:click="selectSession" class="nav-link text-center bg-green">
+                                @php
+                                    $diagnose = \App\Models\Diagnose::where('patient_id', $this->patient->id)
+                                        ->where('patient_package_id', $patient_package->id)
+                                        ->where('session_no', $i)
+                                        ->first();
+                                    
+                                @endphp
+                                <button wire:click="selectSession({{ $patient_package->id }}, {{ $i }})"
+                                    class="nav-link text-center {{ $diagnose ? 'bg-gray' : 'bg-green' }}">
                                     جلسة {{ $i }}
                                 </button>
                             </li>
@@ -128,56 +142,60 @@
             </div>
             @if ($patient || $examine_session == true)
 
-                <ul class="nav nav-pills main-nav-tap mb-3" style="flex-wrap: wrap !important;">
-                    <li class="nav-item" wire:click="$set('screen','current')">
-                        <a href="#" class="nav-link {{ $screen == 'current' ? 'active' : '' }}">
-                            {{ __('current diagnosis') }}
-                        </a>
-                    </li>
-                    <li class="nav-item" wire:click="$set('screen','invoice')">
-                        <a href="#" class="nav-link {{ $screen == 'invoice' ? 'active' : '' }}">
-                            {{ __('Issuance of invoice') }}
-                        </a>
-                    </li>
-                    <li class="nav-item" wire:click="$set('screen','data')">
-                        <a href="#" class="nav-link {{ $screen == 'data' ? 'active' : '' }}">
-                            {{ __('Patient data') }}
-                        </a>
-                    </li>
-                    <li class="nav-item" wire:click="$set('screen','prev')">
-                        <a href="#" class="nav-link  {{ $screen == 'prev' ? 'active' : '' }}">
-                            {{ __('previous diagnoses') }}
-                        </a>
-                    </li>
-                    <li class="nav-item" wire:click="$set('screen','trans')">
-                        <a href="#" class="nav-link {{ $screen == 'trans' ? 'active' : '' }}  ">
-                            {{ __('Transfer of the patient') }}
-                        </a>
-                    </li>
-                    {{-- <li class="nav-item" wire:click="$set('screen','scan')">
-                    <a href="#" class="nav-link {{ $screen == 'scan' ? 'active' : '' }} ">{{ __('Radiation Requests') }}</a></li> --}}
-                    @if (env('PHARMACY_ENABLED', false))
-                        <li class="nav-item" wire:click="$set('screen','pharmacy')">
-                            <a href="#" class="nav-link {{ $screen == 'pharmacy' ? 'active' : '' }}  ">
-                                {{ __('dispensing medicines') }}
+
+                @if ($patient_package && !$session_no)
+                    <div class="alert alert-danger">يجب تحديد الجلسة أولاً</div>
+                @else
+                    <ul class="nav nav-pills main-nav-tap mb-3" style="flex-wrap: wrap !important;">
+                        <li class="nav-item" wire:click="$set('screen','current')">
+                            <a href="#" class="nav-link {{ $screen == 'current' ? 'active' : '' }}">
+                                {{ __('current diagnosis') }}
                             </a>
                         </li>
-                    @endif
-                    <li class="nav-item" wire:click="$set('screen','review')">
-                        <a href="#" class="nav-link {{ $screen == 'review' ? 'active' : '' }}">
-                            مراجعة
-                        </a>
-                    </li>
-                    {{-- <li class="nav-item" wire:click="$set('screen','lab')">
-					<a href="#" class="nav-link {{ $screen=='lab'?'active':'' }} ">{{ __('Lab')}}</a></li> --}}
-                </ul>
+                        <li class="nav-item" wire:click="$set('screen','invoice')">
+                            <a href="#" class="nav-link {{ $screen == 'invoice' ? 'active' : '' }}">
+                                {{ __('Issuance of invoice') }}
+                            </a>
+                        </li>
+                        <li class="nav-item" wire:click="$set('screen','data')">
+                            <a href="#" class="nav-link {{ $screen == 'data' ? 'active' : '' }}">
+                                {{ __('Patient data') }}
+                            </a>
+                        </li>
+                        <li class="nav-item" wire:click="$set('screen','prev')">
+                            <a href="#" class="nav-link  {{ $screen == 'prev' ? 'active' : '' }}">
+                                {{ __('previous diagnoses') }}
+                            </a>
+                        </li>
+                        <li class="nav-item" wire:click="$set('screen','trans')">
+                            <a href="#" class="nav-link {{ $screen == 'trans' ? 'active' : '' }}  ">
+                                {{ __('Transfer of the patient') }}
+                            </a>
+                        </li>
 
-                <div class=" main-tab-content">
-                    @include('doctor.interfaces.' . $screen)
-                </div>
+                        @if (env('PHARMACY_ENABLED', false))
+                            <li class="nav-item" wire:click="$set('screen','pharmacy')">
+                                <a href="#" class="nav-link {{ $screen == 'pharmacy' ? 'active' : '' }}  ">
+                                    {{ __('dispensing medicines') }}
+                                </a>
+                            </li>
+                        @endif
+                        <li class="nav-item" wire:click="$set('screen','review')">
+                            <a href="#" class="nav-link {{ $screen == 'review' ? 'active' : '' }}">
+                                مراجعة
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <div class=" main-tab-content">
+                        @include('doctor.interfaces.' . $screen)
+                    </div>
+                @endif
             @else
                 <div class="alert alert-danger">{{ __('Please click on the patients name') }}</div>
             @endif
+
         </div>
     </div>
 </div>

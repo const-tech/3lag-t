@@ -45,19 +45,19 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $package->package->title }}</td>
-                        <td>{{ $package->dayes_period }}</td>
+                        <td>{{ $package->dayes_period }} يوم</td>
                         <td>{{ $package->total_hours }}</td>
                         <td>{{ $package->invoice->total }}</td>
                         <td>{{ $package->invoice->status == 'Unpaid' ? $package->invoice->total : $package->invoice->rest }}
                         <td>{{ $package->invoice->status == 'Unpaid' ? 'بانتظار الدفع' : 'مدفوع' }}
                         </td>
-                        <td>{{ $package->dayes_period -$package->appointments()->where('appointment_status', 'confirmed')->count() }}
+                        <td>{{ $package->dayes_period - $package->diagnoses->count() }}
                         </td>
 
                         <td class="not-print">
                             <div class="d-flex justify-content-center gap-1 ">
                                 @if ($package->invoice->status != 'Unpaid')
-                                    <a href="{{ route('patients.package_days', [$patient->id, $package->id]) }}"
+                                    <a href="{{ route('front.patients.package_days', [$patient->id, $package->id]) }}"
                                         class="fs-13px btn btn-sm btn-purple"><i class="fa-solid fa-eye"></i></a>
                                 @endif
                                 <button data-bs-toggle="modal" data-bs-target="#renew"

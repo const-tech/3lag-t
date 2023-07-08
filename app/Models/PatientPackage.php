@@ -27,4 +27,8 @@ class PatientPackage extends Model
     {
         return $this->hasMany(Appointment::class);
     }
+    public function diagnoses()
+    {
+        return $this->hasMany(Diagnose::class);
+    }
 }
