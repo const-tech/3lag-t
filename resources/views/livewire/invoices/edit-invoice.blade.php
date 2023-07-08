@@ -81,7 +81,7 @@
 
 
                             <div class="inp-container ms-0 ms-md-2 w-100">
-                                <label for="" class="small-label">نوع الفاتورة</label>
+                                <label for="" class="small-label">يمكنك إختيار الخدمة العلاجية او الخطة العلاجية</label>
                                 <select wire:model="type" id="" class="main-select w-100">
                                     <option value="">اختر</option>
                                     <option value="service">خدمة</option>
