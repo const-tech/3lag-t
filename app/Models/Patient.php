@@ -91,4 +91,9 @@ class Patient extends Model
     {
         $this->attributes['is_pregnant'] = $value ? 1 : 0;
     }
+
+    public function packages()
+    {
+        return $this->hasMany(PatientPackage::class, 'patient_id');
+    }
 }

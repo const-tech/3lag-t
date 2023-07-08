@@ -36,6 +36,17 @@
             left: 0;
         }
     }
+    &.blue-color {
+        background: #09adce !important;
+        border: 1px solid #09adce !important;
+        &:hover {
+            color: #09adce !important;
+            border: 1px solid #09adce !important;
+            &::before {
+                left: 0;
+            }
+        }
+    }
 }
 
 // another button effect

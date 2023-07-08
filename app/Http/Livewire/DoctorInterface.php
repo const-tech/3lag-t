@@ -10,6 +10,8 @@ use Livewire\Component;
 use App\Models\Diagnose;
 use App\Models\Department;
 use App\Models\Appointment;
+use App\Models\Package;
+use App\Models\PatientPackage;
 use App\Models\ScanRequest;
 use Illuminate\Support\Str;
 use Livewire\WithPagination;
@@ -64,6 +66,7 @@ class DoctorInterface extends Component
     public $price;
 
     public $appointment_date;
+    public $examine_patient = false, $type, $packagee, $package_id, $patient_package, $examine_session = false;
 
     public $diagnosis = [
         'taken' => null,
@@ -100,13 +103,12 @@ class DoctorInterface extends Component
             'diagnosis.period' => 'nullable',
             'amount' => 'nullable',
             'total' => 'nullable',
-            'cash' => 'nullable',
-            'card' => 'nullable',
             'rest' => 'nullable',
             'discount' => 'nullable',
             'notes' => 'nullable',
             'tax' => 'nullable',
             'date' => 'nullable|date',
+            'type' => 'nullable',
         ];
     }
 
@@ -116,6 +118,27 @@ class DoctorInterface extends Component
         $this->patient = $this->selected_appointment->patient;
         $this->appointment_id = $id;
     }
+
+    public function selectPackage($id)
+    {
+        $this->patient_package = PatientPackage::findOrFail($id);
+    }
+
+    public function examine_patient()
+    {
+        if ($this->examine_patient == true) {
+            $this->examine_patient = false;
+        } else {
+            $this->examine_patient = true;
+        }
+    }
+
+    public function selectSession()
+    {
+        $this->examine_session = true;
+    }
+
+
 
     //addDiagnosis
 
@@ -149,6 +172,46 @@ class DoctorInterface extends Component
         } else {
             $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => __('Please select the patient first')]);
         }
+    }
+
+    public function updatedPackageId()
+    {
+        if (!$this->patient) {
+            $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => __('Please select the patient first')]);
+            $this->package_id = null;
+            $this->packagee = null;
+        } else {
+            $package = Package::find($this->package_id);
+            if ($package) {
+
+                $this->total = 0;
+                $this->tax = 0;
+                $this->amount = 0;
+                if (setting()->tax_enabled && setting()->tax_rate > 0 && $this->patient->country_id != 1) {
+                    $this->tax = $package->total * (setting()->tax_rate / 100);
+                }
+
+                if ($this->split_number == "" or $this->split_number == 0) {
+                    $this->split_number = 1;
+                }
+
+                $this->amount = $package->total;
+                $this->total = $package->total + $this->tax;
+                $this->card = $this->total;
+                $this->packagee = $package;
+                $this->total_after_split = $this->total / $this->split_number;
+            }
+        }
+    }
+
+    public function deletePackage()
+    {
+        $this->packagee = null;
+        $this->package_id = null;
+        $this->amount = 0;
+        $this->total = 0;
+        $this->card = 0;
+        $this->tax = 0;
     }
 
     public function saveProduct()
@@ -243,19 +306,40 @@ class DoctorInterface extends Component
             $data['discount'] = $this->offers_discount;
         }
 
+        if ($this->package_id) {
+            $data['package_id'] = $this->package_id;
+        }
+
         if (!isset($data['tax'])) {
             $data['tax'] = 0;
         }
+
+        $data['cash'] = 0;
+        $data['card'] = 0;
+        $data['discount'] = 0;
 
         $data['total'] = $this->total_after_split - $this->offers_discount;
         $data['rest'] = $this->total_after_split - $this->offers_discount;
         for ($i = 1; $i <= $this->split_number; $i++) {
             $invoice = Invoice::create($data);
             $invoice->products()->createMany($this->items);
+
+            PatientPackage::create([
+                'patient_id' => $this->patient->id,
+                'package_id' => $this->package_id,
+                'dayes_period' => $this->packagee->num_of_sessions,
+                'session_period' => $this->packagee->session_period,
+                'total_hours' =>  $this->packagee->session_period * $this->packagee->num_of_sessions,
+                'package_price' => $this->packagee->total,
+                'invoice_id' => $invoice->id,
+            ]);
         }
 
         $appointment = doctor()->appointments()->find($this->appointment_id);
         //$appointment->update(['appointment_status' => 'examined']);
+
+
+
         $this->reset();
         session()->flash('success', 'تم اضافة الفاتورة بنجاح');
     }
@@ -397,7 +481,9 @@ class DoctorInterface extends Component
                 ->where('appointment_time', '<=', $to_evening)
                 ->pluck('appointment_time')->toArray();
         }
-        return view('livewire.doctor-interface', compact('today_appointments', 'times', 'reservedTimes'));
+
+        $packages = Package::get();
+        return view('livewire.doctor-interface', compact('today_appointments', 'times', 'reservedTimes', 'packages'));
     }
     // drug_request
     public function drug_request()

@@ -78,31 +78,54 @@
                                 <option value="">{{ __('admin.evening') }}</option>
                             </select>
                         </div> --}}
+
+
+                            <div class="inp-container ms-0 ms-md-2 w-100">
+                                <label for="" class="small-label">نوع الفاتورة</label>
+                                <select wire:model="type" id="" class="main-select w-100">
+                                    <option value="">اختر</option>
+                                    <option value="service">خدمة</option>
+                                    <option value="package">باكدج</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="info-box d-flex flex-column flex-md-row">
+
+                        @if ($type == 'package')
                             <div class="inp-container ms-2 w-100">
-                                <label for="" class="small-label">{{ __('admin.product') }}</label>
-                                <select wire:model="product_id" id="" class="main-select w-100"
-                                    wire:change='add_product'>
-                                    <option value="">{{ __('admin.product') }}</option>
-                                    @foreach ($products as $product)
-                                        <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                <label for="" class="small-label">الباكدج</label>
+                                <select wire:model="package_id" id="" class="main-select w-100">
+                                    <option value="">اختر الباكدج</option>
+                                    @foreach ($packages as $package)
+                                        <option value="{{ $package->id }}">{{ $package->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
+                        @else
+                            <div class="info-box d-flex flex-column flex-md-row">
+                                <div class="inp-container ms-2 w-100">
+                                    <label for="" class="small-label">{{ __('admin.product') }}</label>
+                                    <select wire:model="product_id" id="" class="main-select w-100"
+                                        wire:change='add_product'>
+                                        <option value="">{{ __('admin.product') }}</option>
+                                        @foreach ($products as $product)
+                                            <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                            <div class="inp-container ms-2 w-100">
-                                <label for="" class="small-label">{{ __('admin.product') }}</label>
-                                <input type="number" wire:model='product_id' class="form-control"
-                                    wire:keyup='add_product'
-                                    placeholder="{{ __('You can choose services or search by number') }}">
+                                <div class="inp-container ms-2 w-100">
+                                    <label for="" class="small-label">{{ __('admin.product') }}</label>
+                                    <input type="number" wire:model='product_id' class="form-control"
+                                        wire:keyup='add_product'
+                                        placeholder="{{ __('You can choose services or search by number') }}">
+                                </div>
+                                <div class="inp-container ms-2 w-100 d-flex align-items-end">
+                                    <a target="_blank" href="{{ route('front.products.index') }}"
+                                        class="btn btn-sm btn-primary">{{ __('admin.Therapeutic services') }}</a>
+                                </div>
                             </div>
-                            <div class="inp-container ms-2 w-100 d-flex align-items-end">
-                                <a target="_blank" href="{{ route('front.products.index') }}"
-                                    class="btn btn-sm btn-primary">{{ __('admin.Therapeutic services') }}</a>
-                            </div>
-                        </div>
 
+                        @endif
 
                         @if ($patient && $patient->group)
                             <div class="alert alert-warning mt-3">
@@ -202,42 +225,47 @@
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive mt-4">
-                    <table class="table main-table">
-                        <thead>
-                            <tr>
-                                <th>{{ __('admin.department') }}</th>
-                                <th>{{ __('admin.product') }}</th>
-                                <th>{{ __('admin.price') }}</th>
-                                <th>{{ __('admin.actions') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($items as $key => $item)
-                                <tr>
-                                    <td>{{ __($item['department']) }}</td>
-                                    <td>{{ $item['product_name'] }}</td>
-                                    @can('خصم الفاتورة')
-                                        <td><input type="number" wire:model="items.{{ $key }}.price"
-                                                id="" wire:keyup='changeItemTotal({{ $key }})'></td>
-                                        <td>
-                                        @else
-                                        <td>{{ $item['price'] }}</td>
-                                    @endcan
-                                    <td>
-                                        <div class="d-flex align-items-center justify-content-center gap-1">
-                                            <button class="btn btn-sm btn-danger"
-                                                wire:click="delete_item({{ $key }})">
-                                                <i class="fa-solid fa-trash-can"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
 
-                        </tbody>
-                    </table>
-                </div>
+                @if ($type != 'package')
+                    <div class="table-responsive mt-4">
+                        <table class="table main-table">
+                            <thead>
+                                <tr>
+                                    <th>{{ __('admin.department') }}</th>
+                                    <th>{{ __('admin.product') }}</th>
+                                    <th>{{ __('admin.price') }}</th>
+                                    <th>{{ __('admin.actions') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($items as $key => $item)
+                                    <tr>
+                                        <td>{{ __($item['department']) }}</td>
+                                        <td>{{ $item['product_name'] }}</td>
+                                        @can('خصم الفاتورة')
+                                            <td><input type="number" wire:model="items.{{ $key }}.price"
+                                                    id="" wire:keyup='changeItemTotal({{ $key }})'>
+                                            </td>
+                                            <td>
+                                            @else
+                                            <td>{{ $item['price'] }}</td>
+                                        @endcan
+                                        <td>
+                                            <div class="d-flex align-items-center justify-content-center gap-1">
+                                                <button class="btn btn-sm btn-danger"
+                                                    wire:click="delete_item({{ $key }})">
+                                                    <i class="fa-solid fa-trash-can"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    </div>
+                @endif
+
                 <div class="Thetext-area w-100">
                     <textarea wire:model.defer="notes" id="" class="form-control w-100 p-2"
                         placeholder="{{ __('admin.notes') }}"></textarea>

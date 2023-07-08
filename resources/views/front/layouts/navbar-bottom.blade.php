@@ -11,51 +11,50 @@
                 </li>
 
                 @can('المرضى')
-                <li>
-                    <a class="item" href="{{ route('front.patients.index') }}">
-                        {{ __('admin.patients') }}
-                        <i class="i-item fa-solid fa-users"></i>
-                    </a>
-                </li>
+                    <li>
+                        <a class="item" href="{{ route('front.patients.index') }}">
+                            {{ __('admin.patients') }}
+                            <i class="i-item fa-solid fa-users"></i>
+                        </a>
+                    </li>
                 @endcan
                 @can('اضافة مريض')
-                <li>
-                    <a class="item" href="{{ route('front.patients.create') }}">
-                        {{ __('admin.Add patient') }}
-                        <i class="i-item fa-solid fa-hospital-user"></i>
-                    </a>
-                </li>
+                    <li>
+                        <a class="item" href="{{ route('front.patients.create') }}">
+                            {{ __('admin.Add patient') }}
+                            <i class="i-item fa-solid fa-hospital-user"></i>
+                        </a>
+                    </li>
                 @endcan
                 @can('المواعيد')
-                <li>
-                    <a class="item" href="{{ route('front.appointments.today_appointments') }}">
-                        {{ __('admin.today_appointments') }}
-                        <i class="i-item fa-solid fa-calendar-days"></i>
-                    </a>
-                </li>
-                <li>
-                    <a class="item" href="{{ route('front.appointments.index') }}">
-                        {{ __('admin.Appointments') }}
-                        <i class="i-item fa-solid fa-calendar-days"></i>
-                    </a>
-                </li>
-
+                    <li>
+                        <a class="item" href="{{ route('front.appointments.today_appointments') }}">
+                            {{ __('admin.today_appointments') }}
+                            <i class="i-item fa-solid fa-calendar-days"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="item" href="{{ route('front.appointments.index') }}">
+                            {{ __('admin.Appointments') }}
+                            <i class="i-item fa-solid fa-calendar-days"></i>
+                        </a>
+                    </li>
                 @endcan
                 @can('الفواتير')
-                <li>
-                    <a class="item" href="{{ route('front.invoices.index') }}">
-                        {{ __('admin.invoices') }}
-                        <i class="i-item fa-solid fa-file-invoice"></i>
-                    </a>
-                </li>
+                    <li>
+                        <a class="item" href="{{ route('front.invoices.index') }}">
+                            {{ __('admin.invoices') }}
+                            <i class="i-item fa-solid fa-file-invoice"></i>
+                        </a>
+                    </li>
                 @endcan
                 @can('التشخيصات')
-                <li>
-                    <a class="item" href="{{ route('front.diagnoses.index') }}">
-                        {{ __('admin.Diagnoses') }}
-                        <i class="i-item fa-solid fa-money-check-dollar"></i>
-                    </a>
-                </li>
+                    <li>
+                        <a class="item" href="{{ route('front.diagnoses.index') }}">
+                            {{ __('admin.Diagnoses') }}
+                            <i class="i-item fa-solid fa-money-check-dollar"></i>
+                        </a>
+                    </li>
                 @endcan
 
 
@@ -94,19 +93,32 @@
             </ul>
         </div>
         </li> -->
-        @can('تسديد الزيارات')
-        <li>
-            <a class="item" href="{{ route('front.pay_visit') }}">
-                {{ __('admin.Pay a visit') }}
-                <i class="i-item fa-solid fa-money-check-dollar"></i>
-                <div class="badge-count">
-                    {{ App\Models\Invoice::whereRelation('employee', 'type', 'dr')->where('status', 'Unpaid')->count() }}
-                </div>
-            </a>
-        </li>
-        @endcan
+                @can('تسديد الزيارات')
+                    @php
+                        $package_invoices = \App\Models\Invoice::where('status', 'Unpaid')
+                            ->where('type', 'package')
+                            ->count();
+                        
+                    @endphp
+                    <li>
+                        <a class="item" href="{{ route('front.pay_visit') }}">
+                            {{ __('admin.Pay a visit') }}
+                            <i class="i-item fa-solid fa-money-check-dollar"></i>
+                            <div class="badge-count">
+                                {{ App\Models\Invoice::whereRelation('employee', 'type', 'dr')->where('status', 'Unpaid')->count() }}
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="item" href="{{ route('front.pay_package') }}">
+                            تسديد الباكدج
+                            <i class="i-item fa-solid fa-money-check-dollar"></i>
+                            <div class="badge-count">{{ $package_invoices }}</div>
+                        </a>
+                    </li>
+                @endcan
 
-        </ul>
-    </div>
+            </ul>
+        </div>
     </div>
 </nav>

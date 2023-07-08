@@ -23,7 +23,6 @@
                 </div>
             </a>
         </li>
-        @can('الاعدادت')
         <li class="list-item {{ request()->routeIs('admin.settings') ? 'active' : '' }}">
             <a href="{{ route('admin.settings') }}">
                 <div>
@@ -32,8 +31,13 @@
                 </div>
             </a>
         </li>
+<<<<<<< HEAD
         @endcan
         
+=======
+        {{-- @can('الاعدادت')
+        @endcan --}}
+>>>>>>> d7689a28ec94e52da453bfc91873085ae8d309c2
         @can('الصلاحيات')
 
 

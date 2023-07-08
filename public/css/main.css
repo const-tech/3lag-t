@@ -95,6 +95,16 @@
   height: 45px;
 }
 
+.bg-gray {
+  background-color: #9fa19f !important;
+  color: #fff !important;
+}
+
+.bg-green {
+  background-color: #33ce38 !important;
+  color: #fff !important;
+}
+
 body {
   font-family: "Noto Kufi Arabic", sans-serif;
   background-color: #f7f6fe;
@@ -1275,6 +1285,17 @@ section.page-404 .text {
 .btn-main-sm:hover::before {
   left: 0;
 }
+.btn-main-sm.blue-color {
+  background: #09adce !important;
+  border: 1px solid #09adce !important;
+}
+.btn-main-sm.blue-color:hover {
+  color: #09adce !important;
+  border: 1px solid #09adce !important;
+}
+.btn-main-sm.blue-color:hover::before {
+  left: 0;
+}
 
 .sec-btn-gre {
   position: relative;
@@ -1742,8 +1763,8 @@ section.page-404 .text {
 .main-nav-tap .nav-item .nav-link {
   white-space: nowrap !important;
   border-radius: 0 !important;
-  background-color: #f1f1f1 !important;
-  color: black !important;
+  background-color: #f1f1f1;
+  color: black;
   width: 100% !important;
 }
 .main-nav-tap .nav-item .nav-link.active {
@@ -1880,6 +1901,26 @@ section.page-404 .text {
 .box-report .report-img {
   width: 60px;
   height: 55px;
+}
+
+.box-plan {
+  padding: 20px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1.5px solid #dddddd;
+}
+.box-plan .name {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #dc362e;
+}
+.box-plan .num {
+  font-size: 23px;
+  color: #dc362e;
+  margin-bottom: 0px;
 }
 
 .main-select {
