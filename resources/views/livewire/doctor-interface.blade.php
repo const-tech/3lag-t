@@ -191,6 +191,17 @@
                             </a>
                         </li>
 
+                        <li class="nav-item" wire:click="$set('screen','scan')">
+                            <a href="#" class="nav-link {{ $screen == 'scan' ? 'active' : '' }}  ">
+                                الأشعة
+                            </a>
+                        </li>
+                        <li class="nav-item" wire:click="$set('screen','lab')">
+                            <a href="#" class="nav-link {{ $screen == 'lab' ? 'active' : '' }}  ">
+                                المختبر
+                            </a>
+                        </li>
+
                     </ul>
 
                     <div class=" main-tab-content">
