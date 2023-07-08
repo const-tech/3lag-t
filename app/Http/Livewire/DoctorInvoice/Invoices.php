@@ -32,9 +32,11 @@ class Invoices extends Component
         return view('livewire.doctor-invoice.invoices',[
             'invoices' => doctor()->invoices()->with(['dr','employee','patient'])->where(function($q){
                 $this->between($q);
-            })->where(function ($q){
                 if($this->status){
                     $q->where('status',$this->status);
+                }
+                if(request('patient')){
+                    $q->where('patient_id',request('patient'));
                 }
             })->latest()->paginate(10),
         ]);

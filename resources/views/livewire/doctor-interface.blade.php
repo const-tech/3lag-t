@@ -103,6 +103,11 @@
                         </div>
                     </div>
                     @endif
+                    @if ($patient)
+                    <div class="flex-end">
+                        <a target="_blank" class="btn btn-sm btn-info" href="{{ route('doctor.invoices.index',['patient'=>$patient->id]) }}">فواتير المريض</a>
+                    </div>
+                    @endif
                 </div>
                 {{-- @if ($patient)
                 <div class="btn-holder">
@@ -143,8 +148,71 @@
             @if ($patient || $examine_session == true)
 
 
+<<<<<<< HEAD
             @if ($patient_package && !$session_no)
             <div class="alert alert-danger">يجب تحديد الجلسة أولاً</div>
+=======
+                @if ($patient_package && !$session_no)
+                    <div class="alert alert-danger">يجب تحديد الجلسة أولاً</div>
+                @else
+                    <ul class="nav nav-pills main-nav-tap mb-3" style="flex-wrap: wrap !important;">
+                        <li class="nav-item" wire:click="$set('screen','current')">
+                            <a href="#" class="nav-link {{ $screen == 'current' ? 'active' : '' }}">
+                                {{ __('current diagnosis') }}
+                            </a>
+                        </li>
+                        <li class="nav-item" wire:click="$set('screen','invoice')">
+                            <a href="#" class="nav-link {{ $screen == 'invoice' ? 'active' : '' }}">
+                                {{ __('Issuance of invoice') }}
+                            </a>
+                        </li>
+                        <li class="nav-item" wire:click="$set('screen','data')">
+                            <a href="#" class="nav-link {{ $screen == 'data' ? 'active' : '' }}">
+                                {{ __('Patient data') }}
+                            </a>
+                        </li>
+                        <li class="nav-item" wire:click="$set('screen','prev')">
+                            <a href="#" class="nav-link  {{ $screen == 'prev' ? 'active' : '' }}">
+                                {{ __('previous diagnoses') }}
+                            </a>
+                        </li>
+                        <li class="nav-item" wire:click="$set('screen','trans')">
+                            <a href="#" class="nav-link {{ $screen == 'trans' ? 'active' : '' }}  ">
+                                {{ __('Transfer of the patient') }}
+                            </a>
+                        </li>
+
+                        @if (env('PHARMACY_ENABLED', false))
+                            <li class="nav-item" wire:click="$set('screen','pharmacy')">
+                                <a href="#" class="nav-link {{ $screen == 'pharmacy' ? 'active' : '' }}  ">
+                                    {{ __('dispensing medicines') }}
+                                </a>
+                            </li>
+                        @endif
+                        <li class="nav-item" wire:click="$set('screen','review')">
+                            <a href="#" class="nav-link {{ $screen == 'review' ? 'active' : '' }}">
+                                مراجعة
+                            </a>
+                        </li>
+
+                        <li class="nav-item" wire:click="$set('screen','scan')">
+                            <a href="#" class="nav-link {{ $screen == 'scan' ? 'active' : '' }}  ">
+                                الأشعة
+                            </a>
+                        </li>
+                        <li class="nav-item" wire:click="$set('screen','lab')">
+                            <a href="#" class="nav-link {{ $screen == 'lab' ? 'active' : '' }}  ">
+                                المختبر
+                            </a>
+                        </li>
+
+                    </ul>
+
+                    <div class=" main-tab-content">
+                        @include('doctor.interfaces.' . $screen)
+                    </div>
+                @endif
+>>>>>>> 715298f1c137f5263c243d42ae7dc537397f1828
             @else
             <ul class="nav nav-pills main-nav-tap mb-3" style="flex-wrap: wrap !important;">
                 <li class="nav-item" wire:click="$set('screen','current')">

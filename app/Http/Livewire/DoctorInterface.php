@@ -11,6 +11,7 @@ use App\Models\Diagnose;
 use App\Models\Department;
 use App\Models\Appointment;
 use App\Models\Package;
+use App\Models\PatientFile;
 use App\Models\PatientPackage;
 use App\Models\ScanRequest;
 use Illuminate\Support\Str;
@@ -432,6 +433,32 @@ class DoctorInterface extends Component
         $this->resetInputs();
 
         session()->flash('success', 'تم إنهاء الكشف بنجاح');
+    }
+
+    public function saveScan()
+    {
+        $data = $this->validate([
+            'file' => 'required|mimes:pdf,jpg,png',
+            'dr_content' => 'required',
+        ]);
+        $data['type'] = 'scan';
+        $data['patient_id'] = $this->patient->id;
+        PatientFile::create($data);
+        $this->reset(['file', 'dr_content']);
+        session()->flash('success', ' تم حفظ الأشعة بنجاح');
+    }
+
+    public function saveLab()
+    {
+        $data = $this->validate([
+            'file' => 'required|mimes:pdf,jpg,png',
+            'dr_content' => 'required',
+        ]);
+        $data['type'] = 'lab';
+        $data['patient_id'] = $this->patient->id;
+        PatientFile::create($data);
+        $this->reset(['file', 'dr_content']);
+        session()->flash('success', ' تم حفظ التحليل بنجاح');
     }
 
     public function scan_request()
