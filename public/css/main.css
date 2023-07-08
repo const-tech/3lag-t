@@ -1,14 +1,14 @@
 @charset "UTF-8";
 .text-main-color {
-  color: #2ba670;
+  color: #03a0bc;
 }
 
 .bg-main-color {
-  background-color: #2ba670;
+  background-color: #03a0bc;
 }
 
 .text-main-color {
-  color: #2ba670;
+  color: #03a0bc;
 }
 
 .py-60 {
@@ -850,7 +850,7 @@ section.num-teeth .content input[type=checkbox]:nth-of-type(32) {
     display: none;
   }
   .top-nav .container .list-item li a:hover {
-    color: #2ba670;
+    color: #03a0bc;
   }
 }
 .top-nav .container .list-item li a {
@@ -1202,7 +1202,7 @@ section.page-login .form-login .box-login .content-login .form-control:focus {
 }
 section.page-login .form-login .box-login .content-login .acc-new {
   display: block;
-  color: #2ba670;
+  color: #03a0bc;
 }
 section.page-login .form-login .box-login .content-login .sub {
   transition-duration: 0.15s;
@@ -1218,7 +1218,7 @@ section.page-login .form-login .box-login .content-login .sub {
   line-height: 1.25rem;
   font-weight: 500;
   border-radius: 0.5rem;
-  background-color: #2ba670;
+  background-color: #03a0bc;
   cursor: pointer;
 }
 section.page-login .form-login .box-login .content-login .logo-footer {
@@ -1251,7 +1251,7 @@ section.page-404 .text {
   padding: 0.3rem 0.7rem;
   transition: 300ms;
   color: #fff;
-  background: #2ba670;
+  background: #03a0bc;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1262,7 +1262,7 @@ section.page-404 .text {
   border: none;
   font-size: 13px;
   outline: none;
-  border: 1px solid #2ba670;
+  border: 1px solid #03a0bc;
   z-index: 1;
   position: relative;
   overflow: hidden;
@@ -1279,8 +1279,8 @@ section.page-404 .text {
   z-index: -1;
 }
 .btn-main-sm:hover {
-  color: #2ba670;
-  border: 1px solid #2ba670;
+  color: #03a0bc;
+  border: 1px solid #03a0bc;
 }
 .btn-main-sm:hover::before {
   left: 0;
@@ -1306,7 +1306,7 @@ section.page-404 .text {
   font-size: 15px;
   text-align: center;
   background-color: #fff;
-  border: 2px solid #2ba670;
+  border: 2px solid #03a0bc;
   border-radius: 4px;
   z-index: 1;
   overflow: hidden;
@@ -1315,7 +1315,7 @@ section.page-404 .text {
   transition: 0.4s;
 }
 .sec-btn-gre:hover {
-  color: #2ba670;
+  color: #03a0bc;
 }
 .sec-btn-gre::before {
   content: "";
@@ -1324,7 +1324,7 @@ section.page-404 .text {
   width: 100%;
   height: 180%;
   z-index: -1;
-  background-color: #2ba670;
+  background-color: #03a0bc;
   transition: 0.4s;
   top: 0;
   border-radius: 0 0 50% 50%;
@@ -1463,11 +1463,11 @@ section.page-404 .text {
 .closeBtn-Color {
   background-color: #f14343 !important;
   width: 70px;
-  color: #2ba670;
+  color: #03a0bc;
   transition: 0.4s;
 }
 .closeBtn-Color:hover {
-  color: #2ba670;
+  color: #03a0bc;
   background-color: #df3333 !important;
 }
 
@@ -1548,7 +1548,7 @@ section.page-404 .text {
   color: #5b8af0;
 }
 .boxes-info .box-info.green .bg-icon {
-  color: #2ba670;
+  color: #03a0bc;
 }
 .boxes-info .box-info.pur .bg-icon {
   color: #7b74eb;
@@ -1582,7 +1582,7 @@ section.page-404 .text {
   background-color: #5b8af0;
 }
 .boxes-info.boxes-bg-color .box-info.green {
-  background-color: #2ba670;
+  background-color: #03a0bc;
 }
 .boxes-info.boxes-bg-color .box-info.pur {
   background-color: #7b74eb;
@@ -1622,7 +1622,7 @@ section.page-404 .text {
   color: #5b8af0;
 }
 .boxes-info-5 .box-info.green .bg-icon {
-  color: #2ba670;
+  color: #03a0bc;
 }
 .boxes-info-5 .box-info.pur .bg-icon {
   color: #7b74eb;
@@ -1708,8 +1708,8 @@ section.page-404 .text {
   left: 15px;
 }
 .main-list-group .list-group-item.active {
-  background-color: #2ba670 !important;
-  border-color: #2ba670;
+  background-color: #03a0bc !important;
+  border-color: #03a0bc;
 }
 
 .up-btn {
@@ -1769,7 +1769,7 @@ section.page-404 .text {
 }
 .main-nav-tap .nav-item .nav-link.active {
   color: white !important;
-  background-color: #2ba670 !important;
+  background-color: #03a0bc !important;
 }
 
 .main-tab-content {
@@ -1783,7 +1783,7 @@ section.page-404 .text {
   padding: 0;
 }
 .main-tab-content ul a {
-  color: #2ba670;
+  color: #03a0bc;
 }
 
 /*end nav taps*/
@@ -1820,10 +1820,10 @@ section.page-404 .text {
   color: #ff835c;
 }
 .states-box .data-icon .num-3 {
-  color: #2ba670;
+  color: #03a0bc;
 }
 .states-box .data-icon .icon-3 {
-  color: #2ba670;
+  color: #03a0bc;
 }
 .states-box .data-icon .num-4 {
   color: #ff594d;
@@ -1858,7 +1858,7 @@ section.page-404 .text {
 .states-box .prog-box .prog span.prog-3 {
   position: absolute;
   width: 70%;
-  background-color: #2ba670;
+  background-color: #03a0bc;
 }
 .states-box .prog-box .prog span.prog-4 {
   position: absolute;
@@ -1913,8 +1913,7 @@ section.page-404 .text {
   border: 1.5px solid #dddddd;
 }
 .box-plan .name {
-  margin-bottom: 10px;
-  font-size: 20px;
+  font-size: 18px;
   color: #dc362e;
 }
 .box-plan .num {

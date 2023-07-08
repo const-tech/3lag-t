@@ -32,13 +32,16 @@
                     <td>{{ $invoice->total }}</td>
                     <td>{{ $invoice->rest }}</td>
                     <td>{{ __($invoice->status) }}</td>
-                    <td><a href="" class="btn btn-sm btn-info text-white">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <a target="_blank" href="{{ route('front.invoices.show', $invoice) }}"
-                            class="btn btn-sm btn-purple">
-                            <i class="fa fa-eye"></i>
-                        </a>
+                    <td>
+                        <div class="d-flex justify-content-center gap-1">
+                            <a href="" class="btn btn-sm btn-info text-white">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <a target="_blank" href="{{ route('front.invoices.show', $invoice) }}"
+                                class="btn btn-sm btn-purple">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </div>
                     </td>
                 </tr>
             @endforeach

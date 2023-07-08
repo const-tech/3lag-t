@@ -5,7 +5,7 @@
             <h4 class="main-heading mb-0">الخطط العلاجية</h4>
         </div>
         <div class="bg-white shadow p-4 rounded-3">
-             
+
             <div class="btn-holder mb-3 d-flex align-items-center justify-content-end">
                 <button type="button" wire:click='clearPackage' data-bs-toggle="modal" data-bs-target="#modal-add"
                     class="btn-main-sm">
@@ -71,10 +71,10 @@
                                         <td>{{ $package->price }}<small>SR</small></td>
                                         <td>{{ $package->total }}<small>SR</small></td>
                                         <td>
-                                            <a href="{{ route('front.packages_report', ['package' => $package->id]) }}"
-                                                class="btn btn-sm trans-btn text-white space-noWrap">{{ __('admin.financial report') }}</a>
 
                                             <div class="d-flex align-items-center justify-content-center gap-1">
+                                                <a href="{{ route('front.packages_report', ['package' => $package->id]) }}"
+                                                    class="btn btn-sm trans-btn text-white space-noWrap">{{ __('admin.financial report') }}</a>
                                                 <button wire:click="edit({{ $package->id }})" type="button"
                                                     data-bs-toggle="modal" data-bs-target="#modal-add"
                                                     class="btn btn-sm btn-info text-white py-1">
