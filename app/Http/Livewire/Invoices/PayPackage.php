@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Front\Invoices;
+namespace App\Http\Livewire\Invoices;
 
 use App\Models\Invoice;
 use App\Models\Voucher;
@@ -31,15 +31,7 @@ class PayPackage extends Component
                 'description' => 'سداد فاتورة من العميل ' . $this->patient->name
             ]
         ];
-
-        $voucher = Voucher::create([
-            'description' => 'سداد فاتورة من العميل ' . $invoice->patient->name,
-            'invoice_id' => $invoice->id,
-            'date' => date('Y-m-d')
-        ]);
-
-        $voucher->accounts()->createMany($voucher_data);
-
+        
         $this->emit('refreshComponent');
 
         $this->dispatchBrowserEvent('alert', ['type' => 'success', 'message' => 'تم دخول المريض بنجاح']);
@@ -56,8 +48,8 @@ class PayPackage extends Component
 
     public function render()
     {
-        $invoices = Invoice::where('status', 'Unpaid')->where('type', 'package')->where('is_entered', null)->latest()->paginate(10);
+        $invoices = Invoice::where('status', 'Unpaid')->where('type', 'package')->latest()->paginate(10);
 
-        return view('livewire.front.invoices.pay-package', compact('invoices'));
+        return view('livewire.invoices.pay-package', compact('invoices'));
     }
 }

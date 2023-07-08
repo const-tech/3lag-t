@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Invoice extends Model
 {
     use HasFactory;
-    protected $fillable = ['invoice_number', 'patient_id', 'employee_id', 'total', 'discount', 'tax', 'status', 'amount', 'cash', 'card', 'bank', 'rest', 'notes', 'dr_id', 'department_id', 'offers_discount', 'installment_company', 'installment_company_tax', 'installment_company_max_amount_tax', 'installment_company_min_amount_tax', 'installment_company_rest', 'mastercard', 'visa','tab'];
+    protected $fillable = ['invoice_number', 'patient_id', 'employee_id', 'total', 'discount', 'tax', 'status', 'amount', 'cash', 'card', 'bank', 'rest', 'notes', 'dr_id', 'department_id', 'offers_discount', 'installment_company', 'installment_company_tax', 'installment_company_max_amount_tax', 'installment_company_min_amount_tax', 'installment_company_rest', 'mastercard', 'visa', 'tab', 'type'];
 
     protected $appends = ['paid'];
     //    scope pending
