@@ -10,11 +10,12 @@ use App\Models\Service;
 use Livewire\Component;
 use App\Models\Department;
 use App\Models\LabCategory;
+use App\Models\Package;
 use App\Models\ScanService;
 
 class EditInvoice extends Component
 {
-    public $invoice, $patient_key, $patient, $department_id, $items = [], $product_id, $notes, $invoice_id, $amount = 0, $total, $cash = 0, $bank = 0, $card = 0, $rest, $discount = 0, $status, $tasdeed = false, $offers_discount, $amount_after_offers_discount, $split, $split_number, $total_after_split, $lab_cat_id, $lab_serv_id, $scan_services, $scan_serv_id, $installment_company, $visa, $mastercard, $tax, $dr_id, $date;
+    public $invoice, $patient_key, $patient, $department_id, $items = [], $product_id, $notes, $invoice_id, $amount = 0, $total, $cash = 0, $bank = 0, $card = 0, $rest, $discount = 0, $status, $tasdeed = false, $offers_discount, $amount_after_offers_discount, $split, $split_number, $total_after_split, $lab_cat_id, $lab_serv_id, $scan_services, $scan_serv_id, $installment_company, $visa, $mastercard, $tax, $dr_id, $date, $type, $packagee, $package_id;
     protected function rules()
     {
         return [
@@ -36,6 +37,7 @@ class EditInvoice extends Component
             'tax' => 'nullable',
             'offers_discount' => 'nullable',
             'date' => 'required|date',
+            'type' => 'nullable',
         ];
     }
     public function get_patient()
@@ -140,6 +142,38 @@ class EditInvoice extends Component
     {
         unset($this->items[$key]);
         $this->computeForAll();
+    }
+
+
+    public function updatedPackageId()
+    {
+        if (!$this->patient) {
+            $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => __('Please select the patient first')]);
+            $this->package_id = null;
+            $this->packagee = null;
+        } else {
+
+            $package = Package::find($this->package_id);
+            if ($package) {
+
+                $this->total = 0;
+                $this->tax = 0;
+                $this->amount = 0;
+                if (setting()->tax_enabled && setting()->tax_rate > 0 && $this->patient->country_id != 1) {
+                    $this->tax = $package->total * (setting()->tax_rate / 100);
+                }
+
+                if ($this->split_number == "" or $this->split_number == 0) {
+                    $this->split_number = 1;
+                }
+
+                $this->amount = $package->total;
+                $this->total = $package->total + $this->tax;
+                $this->card = $this->total;
+                $this->packagee = $package;
+                $this->total_after_split = $this->total / $this->split_number;
+            }
+        }
     }
 
     public function computeForAll()
@@ -363,6 +397,7 @@ class EditInvoice extends Component
         $this->tax = $this->invoice->tax;
         $this->rest = $this->invoice->rest;
         $this->discount = $this->invoice->discount;
+        $this->type = $this->invoice->type;
         $this->cash = $this->invoice->cash;
         $this->bank = $this->invoice->bank;
         $this->visa = $this->invoice->visa;
@@ -382,6 +417,7 @@ class EditInvoice extends Component
         $this->offers_discount = $this->invoice->offers_discount;
         $this->amount_after_offers_discount = $this->invoice->amount - $this->invoice->products()->sum('discount');
         $this->department_id = $this->invoice->department_id;
+        $this->package_id = $this->invoice->package_id;
         $this->scan_services = ScanService::all();
     }
 
@@ -400,10 +436,11 @@ class EditInvoice extends Component
     {
         $departments = Department::get();
         $lab_categories = LabCategory::all();
+        $packages = Package::get();
         $lab_services = Service::where('category_id', $this->lab_cat_id)->get();
         $doctors = User::doctors()->where('department_id', $this->department_id)->get();
         $products = Product::where('department_id', $this->department_id)->get();
-        return view('livewire.invoices.edit-invoice', compact('doctors', 'departments', 'products', 'lab_categories', 'lab_services'));
+        return view('livewire.invoices.edit-invoice', compact('doctors', 'departments', 'products', 'lab_categories', 'lab_services', 'packages'));
     }
 
     protected function calculateMethods()

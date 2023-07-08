@@ -48,7 +48,7 @@
                                 <td class="not-print">
                                     <div class="d-flex align-items-center justify-content-center gap-1">
                                         <!--btn  Modal repeat-->
-                                        <a href="{{ route('invoices.show', $invoice) }}" class="btn btn-sm btn-purple">
+                                        <a href="{{ route('front.invoices.show', $invoice) }}" class="btn btn-sm btn-purple">
                                             <i class="fa fa-eye"></i>
                                         </a>
 
@@ -61,12 +61,10 @@
                                             data-bs-custom-class="sm-tooltip" data-bs-placement="top"
                                             data-bs-title="لم يدخل"><i class="fa-solid fa-xmark"></i></button>
 
-                                        @if ($invoice->is_entered == 1)
-                                            <a href="{{ route('invoices.edit', ['invoice' => $invoice, 'pay_package' => 'pay_package']) }}"
-                                                class="btn btn-sm btn-info text-white">
-                                                {{ __('admin.payment') }}
-                                            </a>
-                                        @endif
+                                        <a href="{{ route('front.invoices.edit', ['invoice' => $invoice, 'pay_package' => 'pay_package']) }}"
+                                            class="btn btn-sm btn-info text-white">
+                                            {{ __('admin.payment') }}
+                                        </a>
 
                                         @can('حذف الفواتير')
                                             <button class="btn btn-sm btn-danger" data-bs-toggle="modal"

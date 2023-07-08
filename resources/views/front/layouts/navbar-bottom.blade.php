@@ -97,7 +97,6 @@
                     @php
                         $package_invoices = \App\Models\Invoice::where('status', 'Unpaid')
                             ->where('type', 'package')
-                            ->where('is_entered', null)
                             ->count();
                         
                     @endphp

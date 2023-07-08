@@ -187,7 +187,7 @@ class DoctorInterface extends Component
                 $this->total = 0;
                 $this->tax = 0;
                 $this->amount = 0;
-                if (setting()->tax_enabled && setting()->tax_rate > 0 && $this->patient->nationality_id != 511) {
+                if (setting()->tax_enabled && setting()->tax_rate > 0 && $this->patient->country_id != 1) {
                     $this->tax = $package->total * (setting()->tax_rate / 100);
                 }
 

@@ -68,10 +68,10 @@
                         {{ $patient->name ?? null }}
                     </p>
 
-                    @if ($patient && $examine_patient == true)
+                    @if ($patient)
                         <div class="mb-0">
                             <button type="submit" wire:click="endSession" class="btn btn-sm btn-info me-2">
-                                {{ $examine_patient == true ? 'إنهاء الكشف' : __('End Session') }}
+                                {{ __('End Session') }}
                             </button>
                         </div>
                     @endif
@@ -98,11 +98,11 @@
                         </div>
                     @endif
                 </div>
-                @if ($patient)
+                {{-- @if ($patient)
                     <div class="btn-holder">
                         <button class="btn-main-sm blue-color" wire:click="examine_patient">كشف حاله</button>
                     </div>
-                @endif
+                @endif --}}
 
             </div>
             @if ($patient && $patient->packages->count() > 0 && $patient_package)
@@ -126,7 +126,7 @@
                     </div>
                 @endif
             </div>
-            @if ($patient && ($examine_patient == true || $examine_session == true))
+            @if ($patient || $examine_session == true)
 
                 <ul class="nav nav-pills main-nav-tap mb-3" style="flex-wrap: wrap !important;">
                     <li class="nav-item" wire:click="$set('screen','current')">
