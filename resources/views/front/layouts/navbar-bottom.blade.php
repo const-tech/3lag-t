@@ -18,14 +18,6 @@
                         </a>
                     </li>
                 @endcan
-                @can('اضافة مريض')
-                    <li>
-                        <a class="item" href="{{ route('front.patients.create') }}">
-                            {{ __('admin.Add patient') }}
-                            <i class="i-item fa-solid fa-hospital-user"></i>
-                        </a>
-                    </li>
-                @endcan
                 @can('المواعيد')
                     <li>
                         <a class="item" href="{{ route('front.appointments.today_appointments') }}">
@@ -98,7 +90,7 @@
                         $package_invoices = \App\Models\Invoice::where('status', 'Unpaid')
                             ->where('type', 'package')
                             ->count();
-                        
+
                     @endphp
                     <li>
                         <a class="item" href="{{ route('front.pay_visit') }}">
