@@ -5,7 +5,12 @@
                  <b>عنوان الباكدج : {{ $patient_package->package?->title }}</b>
              </div>
              <div class="col-md-4 mt-4">
-                 <b>تاريخ الاشتراك : {{ $patient_package->invoice?->date }}</b>
+                 @php
+                     $invoice = \App\Models\Invoice::where('patient_id', $patient_package->patient_id)
+                         ->where('package_id', $patient_package->package_id)
+                         ->first();
+                 @endphp
+                 <b>تاريخ الاشتراك : {{ $invoice->date }}</b>
              </div>
              <div class="col-md-4 mt-4">
                  <b>عدد الأيام : {{ $patient_package->dayes_period }}</b>
