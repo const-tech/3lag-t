@@ -13,6 +13,19 @@
                 الاسئله المقاليه
             </p>
             <div class="accordion mt-3" id="accordionExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapse-video-1" aria-expanded="false">
+                    شرح الاستخدام
+                    </button>
+                </h2>
+                <div id="collapse-collapse-video-1" class="accordion-collapse show collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                    <iframe class="w-100" height="200" src="https://www.youtube.com/embed/jPa9eajpryE"></iframe>
+                    </div>
+                </div>
+            </div>
                 @foreach ($manuals as $item)
                 <div class="accordion-item">
                     <h2 class="accordion-header">
