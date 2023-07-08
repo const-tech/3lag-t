@@ -31,16 +31,8 @@
                 </div>
             </a>
         </li>
-<<<<<<< HEAD
-        @endcan
-        
-=======
-        {{-- @can('الاعدادت')
-        @endcan --}}
->>>>>>> d7689a28ec94e52da453bfc91873085ae8d309c2
+
         @can('الصلاحيات')
-
-
         <li class="list-item {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
             <a href="{{ route('admin.roles.index') }}">
                 <div>

@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
         City::truncate();
         Country::truncate();
         Product::truncate();
-        Department::create(['name' => 'أسنان']);
+        Department::create(['name' => 'العلاج الطبيعي']);
         Department::create(['name' => 'مختبر']);
         Department::create(['name' => 'أشعة']);
         Relationship::create(['name' => 'متزوج']);
