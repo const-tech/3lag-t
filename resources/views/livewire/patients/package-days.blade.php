@@ -10,7 +10,7 @@
                          ->where('package_id', $patient_package->package_id)
                          ->first();
                  @endphp
-                 <b>تاريخ الاشتراك : {{ $invoice->date }}</b>
+                 <b>تاريخ الاشتراك : {{ isset($invoice->date) ? $invoice->date : ""  }}</b>
              </div>
              <div class="col-md-4 mt-4">
                  <b>عدد الأيام : {{ $patient_package->dayes_period }}</b>
