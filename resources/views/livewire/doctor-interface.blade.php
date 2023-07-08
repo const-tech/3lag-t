@@ -103,6 +103,11 @@
                             </div>
                         </div>
                     @endif
+                    @if ($patient)
+                    <div class="flex-end">
+                        <a target="_blank" class="btn btn-sm btn-info" href="{{ route('doctor.invoices.index',['patient'=>$patient->id]) }}">فواتير المريض</a>
+                    </div>
+                    @endif
                 </div>
                 {{-- @if ($patient)
                     <div class="btn-holder">
