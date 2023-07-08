@@ -100,7 +100,7 @@ button {
   width: 216px;
   z-index: 11;
   overflow-y: auto;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.16);
   transition: 300ms;
   position: absolute;
@@ -116,7 +116,7 @@ button {
   }
 }
 .app .sidebar .tog-active {
-  color: #9C9C9C;
+  color: #9c9c9c;
   cursor: pointer;
   margin: 20px 15px 9px auto;
   font-size: 20px;
@@ -138,7 +138,7 @@ button {
   align-items: center;
   justify-content: space-between;
   font-size: 14px;
-  color: #9C9C9C;
+  color: #9c9c9c;
   padding: 11px 15px;
   gap: 7px;
   font-weight: 300;
