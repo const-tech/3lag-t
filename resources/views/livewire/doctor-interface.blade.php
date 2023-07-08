@@ -61,8 +61,7 @@
             </div>
         </div>
         <div class="col-lg-9 col-xl-10 mt-3 mt-lg-0">
-            <div class="d-flex mb-1 align-items-center justify-content-between">
-                <div class="d-flex mb-1 align-items-center gap-1 justify-content-between flex-fill">
+            <div class="d-flex mb-3 align-items-center justify-content-between">
                     <p class="mb-0">
                         <b class="text-main-color">{{ __('Patient name') }} : </b>
                         {{ $patient->name ?? null }}
@@ -75,13 +74,6 @@
                         @endif
                     </p>
 
-                    @if ($patient)
-                    <div class="mb-0">
-                        <button type="submit" wire:click="endSession" class="btn btn-sm btn-info me-2">
-                            {{ __('End Session') }}
-                        </button>
-                    </div>
-                    @endif
 
                     @if ($patient->sugar ?? null or $patient->pressure ?? null or $patient->is_pregnant ?? null)
                     <div class="alert alert-danger d-flex align-items-center mb-0 py-2 ps-3 pe-2 me-2" role="alert">
@@ -103,12 +95,16 @@
                         </div>
                     </div>
                     @endif
+                    <div class="d-flex align-items-center gap-1 justify-content-between">
                     @if ($patient)
-                    <div class="flex-end">
-                        <a target="_blank" class="btn btn-sm btn-info" href="{{ route('doctor.invoices.index',['patient'=>$patient->id]) }}">فواتير المريض</a>
-                    </div>
+                        <button type="submit" wire:click="endSession" class="btn btn-sm btn-info me-2">
+                            {{ __('End Session') }}
+                        </button>
                     @endif
-                </div>
+                        @if ($patient)
+                            <a target="_blank" class="btn btn-sm btn-info" href="{{ route('doctor.invoices.index',['patient'=>$patient->id]) }}">فواتير المريض</a>
+                        @endif
+                    </div>
                 {{-- @if ($patient)
                 <div class="btn-holder">
                     <button class="btn-main-sm blue-color" wire:click="examine_patient">كشف حاله</button>
@@ -148,71 +144,8 @@
             @if ($patient || $examine_session == true)
 
 
-<<<<<<< HEAD
             @if ($patient_package && !$session_no)
             <div class="alert alert-danger">يجب تحديد الجلسة أولاً</div>
-=======
-                @if ($patient_package && !$session_no)
-                    <div class="alert alert-danger">يجب تحديد الجلسة أولاً</div>
-                @else
-                    <ul class="nav nav-pills main-nav-tap mb-3" style="flex-wrap: wrap !important;">
-                        <li class="nav-item" wire:click="$set('screen','current')">
-                            <a href="#" class="nav-link {{ $screen == 'current' ? 'active' : '' }}">
-                                {{ __('current diagnosis') }}
-                            </a>
-                        </li>
-                        <li class="nav-item" wire:click="$set('screen','invoice')">
-                            <a href="#" class="nav-link {{ $screen == 'invoice' ? 'active' : '' }}">
-                                {{ __('Issuance of invoice') }}
-                            </a>
-                        </li>
-                        <li class="nav-item" wire:click="$set('screen','data')">
-                            <a href="#" class="nav-link {{ $screen == 'data' ? 'active' : '' }}">
-                                {{ __('Patient data') }}
-                            </a>
-                        </li>
-                        <li class="nav-item" wire:click="$set('screen','prev')">
-                            <a href="#" class="nav-link  {{ $screen == 'prev' ? 'active' : '' }}">
-                                {{ __('previous diagnoses') }}
-                            </a>
-                        </li>
-                        <li class="nav-item" wire:click="$set('screen','trans')">
-                            <a href="#" class="nav-link {{ $screen == 'trans' ? 'active' : '' }}  ">
-                                {{ __('Transfer of the patient') }}
-                            </a>
-                        </li>
-
-                        @if (env('PHARMACY_ENABLED', false))
-                            <li class="nav-item" wire:click="$set('screen','pharmacy')">
-                                <a href="#" class="nav-link {{ $screen == 'pharmacy' ? 'active' : '' }}  ">
-                                    {{ __('dispensing medicines') }}
-                                </a>
-                            </li>
-                        @endif
-                        <li class="nav-item" wire:click="$set('screen','review')">
-                            <a href="#" class="nav-link {{ $screen == 'review' ? 'active' : '' }}">
-                                مراجعة
-                            </a>
-                        </li>
-
-                        <li class="nav-item" wire:click="$set('screen','scan')">
-                            <a href="#" class="nav-link {{ $screen == 'scan' ? 'active' : '' }}  ">
-                                الأشعة
-                            </a>
-                        </li>
-                        <li class="nav-item" wire:click="$set('screen','lab')">
-                            <a href="#" class="nav-link {{ $screen == 'lab' ? 'active' : '' }}  ">
-                                المختبر
-                            </a>
-                        </li>
-
-                    </ul>
-
-                    <div class=" main-tab-content">
-                        @include('doctor.interfaces.' . $screen)
-                    </div>
-                @endif
->>>>>>> 715298f1c137f5263c243d42ae7dc537397f1828
             @else
             <ul class="nav nav-pills main-nav-tap mb-3" style="flex-wrap: wrap !important;">
                 <li class="nav-item" wire:click="$set('screen','current')">
