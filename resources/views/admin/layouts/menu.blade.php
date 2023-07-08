@@ -33,7 +33,10 @@
             </a>
         </li>
         @endcan
+        
         @can('الصلاحيات')
+
+
         <li class="list-item {{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
             <a href="{{ route('admin.roles.index') }}">
                 <div>

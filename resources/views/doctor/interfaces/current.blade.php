@@ -1,30 +1,30 @@
- <section class="p-3">
-    <section class="form-group mb-3 {{ setting()->complaint?'':'d-none' }}">
+ <section class="p-3 row">
+    <section class="form-group col-12 col-md-6 col-lg-3 mb-3 {{ setting()->complaint?'':'d-none' }}">
         <label for="exampleFormControlTextarea1" class="mb-2">الشكوى</label>
         <textarea class="form-control"  rows="3" wire:model.defer="diagnosis.complaint"></textarea>
     </section>
-    <section class="form-group mb-3 {{ setting()->complaint?'':'d-none' }}">
+    <section class="form-group col-12 col-md-6 col-lg-3 mb-3 {{ setting()->complaint?'':'d-none' }}">
         <label for="exampleFormControlTextarea1" class="mb-2">الكشف السريري</label>
         <textarea class="form-control" rows="3" wire:model.defer="diagnosis.clinical_examination"></textarea>
     </section>
-    <section class="form-group mb-3">
+    <section class="form-group col-12 col-md-6 col-lg-3 mb-3">
         <label for="exampleFormControlTextarea1" class="mb-2">{{ __('Chief complain')}}</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" wire:model.defer="diagnosis.chief_complain"></textarea>
     </section>
-    <section class="form-group mb-3">
+    <section class="form-group col-12 col-md-6 col-lg-3 mb-3">
         <label for="exampleFormControlTextarea1" class="mb-2">{{ __('Sign and symptom')}}</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" wire:model.defer="diagnosis.sign_and_symptom"></textarea>
     </section>
-    <section class="form-group mb-3">
+    <section class="form-group col-12 col-md-6 col-lg-3 mb-3">
         <label for="exampleFormControlTextarea1" class="mb-2">{{ __('Other')}}</label>
         <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" wire:model.defer="diagnosis.other"></textarea>
     </section>
-     <section class="form-group mb-3">
+     <section class="form-group col-12 col-md-6 col-lg-3 mb-3">
          <label for="exampleFormControlTextarea1" class="mb-2">{{ __('Diagnose')}}</label>
          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" wire:model.defer="diagnosis.taken"></textarea>
      </section>
      {{-- treatment --}}
-     <section class="form-group my-3">
+     <section class="form-group col-12 col-md-6 col-lg-3 my-3">
          <label for="exampleFormControlTextarea1" class="mb-2">{{ __('Action taken')}}</label>
          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" wire:model.defer="diagnosis.treatment"></textarea>
      </section>
