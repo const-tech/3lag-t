@@ -67,6 +67,7 @@ class DoctorInterface extends Component
     public $price;
 
     public $appointment_date;
+    public $last_invoice;
     public $examine_patient = false, $type, $packagee, $package_id, $patient_package, $examine_session = false, $session_no, $session_diagnose;
 
     public $diagnosis = [
@@ -118,6 +119,9 @@ class DoctorInterface extends Component
         $this->selected_appointment = Appointment::with('child')->findOrFail($id);
         $this->patient = $this->selected_appointment->patient;
         $this->appointment_id = $id;
+        $this->last_invoice = Invoice::where('patient_id', $this->patient->id)->where(function ($q) {
+            $q->where('date', $this->selected_appointment->appointment_date)->orWhere('date', date('Y-m-d'));
+        })->first();
     }
 
     public function selectPackage($id)
