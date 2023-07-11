@@ -101,8 +101,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-sm btn-danger" data-bs-dismiss="modal">{{ __('admin.back') }}</button>
-                <button class="btn btn-success btn-sm px-4" type="button" class="btn btn-primary" id="print-trans-btn" wire:click="submit_transfer({{ true }})" data-bs-dismiss="modal">{{ __('Save and print') }}</button>
-                <button wire:click="submit_transfer()" class="btn-main-sm px-5" data-bs-dismiss="modal">{{ __('transfer') }}</button>
+                <button wire:click="submit_transfer({{ setting()->active_transfer_print }})" class="btn-main-sm px-5" data-bs-dismiss="modal">{{ __('transfer') }}</button>
             </div>
         </div>
     </div>

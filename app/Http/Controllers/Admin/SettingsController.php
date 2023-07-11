@@ -28,6 +28,7 @@ class SettingsController extends Controller
         $data['payment_gateways'] = $request->payment_gateways ? 1 : 0;
         $data['complaint'] = $request->complaint ? 1 : 0;
         $data['activate_birthdate'] = $request->activate_birthdate ? 1 : 0;
+        $data['active_transfer_print'] = $request->active_transfer_print ? 1 : 0;
         setting()->update($data);
         return back()->with('success', __('Successfully updated'));
     }

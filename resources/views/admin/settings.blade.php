@@ -183,7 +183,11 @@
             <input type="checkbox" name="new_invoice_form" value="1"
                 {{ setting()->new_invoice_form ? 'checked' : '' }}>
         </div>
-
+        <div class="form-group col-12">
+            <label class="main-lable" for="">تفعيل طباعه تحويل المريض</label>
+            <input type="checkbox" name="active_transfer_print" value="1"
+                {{ setting()->active_transfer_print ? 'checked' : '' }}>
+        </div>
 
 
         <div class="form-group col-sm-12">
