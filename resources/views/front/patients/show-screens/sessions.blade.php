@@ -56,11 +56,9 @@
 
                         <td class="not-print">
                             <div class="d-flex justify-content-center gap-1 ">
-                                @if ($package->invoice->status != 'Unpaid')
-                                    <a href="{{ route('front.patients.package_days', [$patient->id, $package->id]) }}"
+                                     <a href="{{ route('front.patients.package_days', [$patient->id, $package->id]) }}"
                                         class="fs-13px btn btn-sm btn-purple"><i class="fa-solid fa-eye"></i></a>
-                                @endif
-                                <button data-bs-toggle="modal" data-bs-target="#renew"
+                                 <button data-bs-toggle="modal" data-bs-target="#renew"
                                     wire:click="packageId({{ $package->id }})" class="btn btn-warning btn-sm text-nowrap">تجديد
                                     الباكدج </button>
                                 <div class="fs-13px btn btn-sm btn-danger">الغاء </div>
