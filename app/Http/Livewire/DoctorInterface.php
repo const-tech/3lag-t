@@ -321,6 +321,7 @@ class DoctorInterface extends Component
         $data['status'] = 'Unpaid';
         $data['employee_id'] = auth()->id();
         $data['department_id'] = $this->department_id;
+        unset($data['diagnosis']);
         if (!$this->patient->group) {
             $data['discount'] = $this->offers_discount;
         }
@@ -341,7 +342,10 @@ class DoctorInterface extends Component
         $data['rest'] = $this->total_after_split - $this->offers_discount;
         for ($i = 1; $i <= $this->split_number; $i++) {
             $invoice = Invoice::create($data);
-            $invoice->products()->createMany($this->items);
+            if ($this->items) {
+                $invoice->products()->createMany($this->items);
+            }
+
 
             PatientPackage::create([
                 'patient_id' => $this->patient->id,
