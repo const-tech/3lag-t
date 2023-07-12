@@ -28,7 +28,7 @@ class PackageDays extends Component
         $count_package_days = PackageDay::where('patient_id', $this->patient->id)->where('patient_package_id', $this->patient_package->id)->count();
 
         $count = $this->patient_package->dayes_period - $count_package_days;
-        for ($i = 0; $i < $count; $i++) {
+         for ($i = 0; $i < $count; $i++) {
             $this->days[] = [
                 'times' => [],
                 'day' => '',
@@ -89,23 +89,27 @@ class PackageDays extends Component
 
     public function getTimes($index, $date)
     {
-        $this->days[$index]['times'] = [];
-        // get only hour from time type
-        $from_morning = Carbon::parse(setting('from_morning'))->format('H');
-        $to_morning = Carbon::parse(setting('to_morning'))->format('H');
-        $this->reservedTimes = [];
+        if (setting()->from_morning && setting()->to_morning) {
+            $this->days[$index]['times'] = [];
+            // get only hour from time type
+            $from_morning = Carbon::parse(setting()->from_morning)->format('H');
+            $to_morning = Carbon::parse(setting()->to_morning)->format('H');
+            $this->reservedTimes = [];
 
-        $this->days[$index]['times'] = [];
-        for ($i = $from_morning; $i < $to_morning; $i++) {
-            $this->days[$index]['times'][] = $i . ':00';
-            $this->days[$index]['times'][] = $i . ':30';
+            $this->days[$index]['times'] = [];
+            for ($i = $from_morning; $i < $to_morning; $i++) {
+                $this->days[$index]['times'][] = $i . ':00';
+                $this->days[$index]['times'][] = $i . ':30';
+            }
+            $this->reservedTimes = Appointment::where('appointment_date', $date)
+                ->where('appointment_time', '>=', $from_morning)
+                ->where('appointment_time', '<=', $to_morning)
+                ->pluck('appointment_time')->toArray();
+
+            $this->days[$index]['day'] = Carbon::parse($date)->isoFormat('dddd');
+        } else {
+            $this->dispatchBrowserEvent('alert', ['type' => 'error',  'message' => 'يجب تحديد المواعيد من الاعدادات أولاً']);
         }
-        $this->reservedTimes = Appointment::where('appointment_date', $date)
-            ->where('appointment_time', '>=', $from_morning)
-            ->where('appointment_time', '<=', $to_morning)
-            ->pluck('appointment_time')->toArray();
-
-        $this->days[$index]['day'] = Carbon::parse($date)->isoFormat('dddd');
     }
 
     public function saveDays()
@@ -146,7 +150,7 @@ class PackageDays extends Component
         }
 
         session()->flash('success', __('Saved successfully'));
-        return redirect()->route('appointments.index');
+        return redirect()->route('front.appointments.index');
     }
 
     public function render()

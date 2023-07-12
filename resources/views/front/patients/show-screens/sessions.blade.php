@@ -56,12 +56,17 @@
 
                         <td class="not-print">
                             <div class="d-flex justify-content-center gap-1 ">
-                                     <a href="{{ route('front.patients.package_days', [$patient->id, $package->id]) }}"
-                                        class="fs-13px btn btn-sm btn-purple"><i class="fa-solid fa-eye"></i></a>
-                                 <button data-bs-toggle="modal" data-bs-target="#renew"
-                                    wire:click="packageId({{ $package->id }})" class="btn btn-warning btn-sm text-nowrap">تجديد
+                                <a href="{{ route('front.patients.package_days', [$patient->id, $package->id]) }}"
+                                    class="fs-13px btn btn-sm btn-purple"><i class="fa-solid fa-eye"></i></a>
+                                <button data-bs-toggle="modal" data-bs-target="#renew"
+                                    wire:click="packageId({{ $package->id }})"
+                                    class="btn btn-warning btn-sm text-nowrap">تجديد
                                     الباكدج </button>
-                                <div class="fs-13px btn btn-sm btn-danger">الغاء </div>
+
+                                <button data-bs-toggle="modal" data-bs-target="#cancel_package"
+                                    wire:click="packageId({{ $package->id }})"
+                                    class="btn btn-danger btn-sm text-nowrap">الغاء
+                                </button>
                             </div>
                         </td>
                     </tr>
@@ -69,5 +74,6 @@
             </tbody>
         </table>
         @include('front.patients.renew')
+        @include('front.patients.cancel_package')
     </div>
 </div>
