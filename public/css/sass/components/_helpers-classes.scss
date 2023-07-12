@@ -96,3 +96,9 @@
     background-color: #33ce38 !important;
     color: #fff !important;
 }
+
+.padding-print {
+    @media print {
+        padding: 12px;
+    }
+}

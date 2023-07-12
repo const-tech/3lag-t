@@ -23,7 +23,7 @@
                         <button type="button"
                             class="list-group-item list-group-item-action {{ $screen == 'sessions' ? 'active' : '' }}"
                             wire:click='$set("screen","sessions")'>
-                            الخطط العلاجية<div class="badge-count">
+                            الخطط العلاجيه والجلسات<div class="badge-count">
                                 {{ $patient->packages->count() }}
                             </div>
                         </button>

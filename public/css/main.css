@@ -105,6 +105,12 @@
   color: #fff !important;
 }
 
+@media print {
+  .padding-print {
+    padding: 12px;
+  }
+}
+
 body {
   font-family: "Noto Kufi Arabic", sans-serif;
   background-color: #f7f6fe;
@@ -1920,6 +1926,22 @@ section.page-404 .text {
   font-size: 23px;
   color: #dc362e;
   margin-bottom: 0px;
+}
+
+.box-data-title {
+  border: 1px solid #ddd;
+  padding: 1rem;
+}
+.box-data-title .title {
+  background-color: #f9fafb;
+  color: #6b7280;
+  padding: 0px 3px;
+  margin-left: 4px;
+}
+@media print {
+  .box-data-title .col-md-4 {
+    width: 33.33333333% !important;
+  }
 }
 
 .main-select {

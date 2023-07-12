@@ -412,3 +412,18 @@
         margin-bottom: 0px;
     }
 }
+.box-data-title {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    .title {
+        background-color: #f9fafb;
+        color: #6b7280;
+        padding: 0px 3px;
+        margin-left: 4px;
+    }
+    @media print {
+        .col-md-4 {
+            width: 33.33333333% !important;
+        }
+    }
+}
