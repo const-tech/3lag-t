@@ -45,41 +45,46 @@ class AppointmentForm extends Component
 
     public function save()
     {
-        // check if there is an appointment with the same doctor and patient
-        $appointment = Appointment::where('doctor_id', $this->doctor_id)
-            ->where('patient_id', $this->patient->id)
-            ->where('appointment_status', 'pending')
-            ->first();
-        if ($appointment && !$this->appointment) {
-            $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'هناك موعد بهذا الطبيب لهذا المريض']);
-            return;
-        }
+        if (setting()->from_morning || setting()->from_evening) {
 
-        // check if there is an appointment with the same date and time
-        $appointment = Appointment::where('appointment_date', $this->appointment_date)
-            ->where('appointment_time', $this->appointment_time)
-            ->first();
-        if ($appointment && !$this->appointment) {
-            $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'هناك موعد بهذا التاريخ والوقت']);
-            return;
-        }
+            // check if there is an appointment with the same doctor and patient
+            $appointment = Appointment::where('doctor_id', $this->doctor_id)
+                ->where('patient_id', $this->patient->id)
+                ->where('appointment_status', 'pending')
+                ->first();
+            if ($appointment && !$this->appointment) {
+                $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'هناك موعد بهذا الطبيب لهذا المريض']);
+                return;
+            }
 
-        $data = $this->validate();
-        unset($data['patient']);
-        $data['employee_id'] = auth()->id();
-        $data['patient_id'] = $this->patient->id;
-        // $data['appointment_status'] = Carbon::parse($this->appointment_date)->format('Y-m-d') > today()->format('Y-m-d') ? 'confirmed' : 'pending';
-        $data['appointment_status'] = $this->appointment_status;
-        $data['appointment_time'] = date('H:i', strtotime($this->appointment_time));
-        if ($this->appointment->id) {
-            $this->appointment->update($data);
+            // check if there is an appointment with the same date and time
+            $appointment = Appointment::where('appointment_date', $this->appointment_date)
+                ->where('appointment_time', $this->appointment_time)
+                ->first();
+            if ($appointment && !$this->appointment) {
+                $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'هناك موعد بهذا التاريخ والوقت']);
+                return;
+            }
+
+            $data = $this->validate();
+            unset($data['patient']);
+            $data['employee_id'] = auth()->id();
+            $data['patient_id'] = $this->patient->id;
+            // $data['appointment_status'] = Carbon::parse($this->appointment_date)->format('Y-m-d') > today()->format('Y-m-d') ? 'confirmed' : 'pending';
+            $data['appointment_status'] = $this->appointment_status;
+            $data['appointment_time'] = date('H:i', strtotime($this->appointment_time));
+            if ($this->appointment->id) {
+                $this->appointment->update($data);
+            } else {
+                $data['appointment_number'] = Str::random(10);
+
+                Appointment::create($data);
+            }
+            session()->flash('success', __('Saved successfully'));
+            return redirect()->route('front.appointments.index');
         } else {
-            $data['appointment_number'] = Str::random(10);
-
-            Appointment::create($data);
+            $this->dispatchBrowserEvent('alert', ['type' => 'error', 'message' => 'يجب تحديد المواعيد من الاعدادات أولاً']);
         }
-        session()->flash('success', __('Saved successfully'));
-        return redirect()->route('front.appointments.index');
     }
 
     public function mount(Appointment $appointment)
