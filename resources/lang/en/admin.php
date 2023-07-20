@@ -399,6 +399,7 @@ return [
     "evening_status" => 'Evening status',
     "back" => 'Back',
     "user-manuals" => "User Manual",
-    "session_duration" => "Session Duration"
+    "session_duration" => "Session Duration",
+    "age" => "Age"
 
 ];
