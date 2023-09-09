@@ -333,6 +333,10 @@ class AddInvoices extends Component
         $this->visa = 0;
         $this->rest = 0;
         $this->date = date('Y-m-d');
+        if(request('patient_id')){
+            $this->patient_key=request('patient_id');
+            $this->get_patient();
+        }
     }
 
     public function render()

@@ -135,6 +135,10 @@
                                     <td class="not-print">
                                         <div class="d-flex align-items-center justify-content-center gap-1">
                                             <!--btn  Modal repeat-->
+                                            <a href="{{ route('front.invoices.create',['patient_id'=>$patient->id]) }}"
+                                                class="btn btn-sm btn-purple py-1">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
                                             <a href="{{ route('front.patients.show', $patient) }}"
                                                 class="btn btn-sm btn-purple py-1">
                                                 <i class="fa fa-eye"></i>
